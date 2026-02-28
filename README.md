@@ -222,12 +222,6 @@ Edit `src/items.js` — the single source of truth for all hunt items:
 
 ---
 
-## Open Questions
-
-1. **Winner announcement** — display winning team on leaderboard after hunt closes, or handle offline at event?
-
----
-
 ## TODO Checklist
 
 - [x] Save brand logo to `public/logo.png`
