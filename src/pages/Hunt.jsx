@@ -62,8 +62,8 @@ export default function Hunt({ submissionsOpen }) {
   const foundCount = submissions.length
   const totalCount = items.length
 
-  const standardItems = items.filter((i) => i.item_type === 'standard')
   const sponsorItems = items.filter((i) => i.item_type === 'sponsor')
+  const standardItems = items.filter((i) => i.item_type === 'standard')
 
   function handleLogout() {
     localStorage.removeItem('vntrbirds_session')
@@ -120,46 +120,19 @@ export default function Hunt({ submissionsOpen }) {
         {loading ? (
           <div className="mt-16 text-center text-white/40 text-sm">Loading your hunt…</div>
         ) : (
-          <>
-            {/* Standard Items */}
-            <section className="mt-6">
-              <h2 className="text-xs font-bold tracking-widest uppercase text-white/40 mb-3">
-                Hunt Items
-              </h2>
-              <div className="flex flex-col gap-3">
-                {standardItems.map((item) => (
-                  <ItemCard
-                    key={item.id}
-                    item={item}
-                    submission={foundMap[item.id]}
-                    session={session}
-                    submissionsOpen={submissionsOpen}
-                    onFound={handleFound}
-                  />
-                ))}
-              </div>
-            </section>
-
-            {/* Sponsor Items */}
-            <section className="mt-8">
-              <h2 className="text-xs font-bold tracking-widest uppercase text-brand-magentaVibrant/80 mb-3">
-                Sponsor Spotlights
-              </h2>
-              <div className="flex flex-col gap-3">
-                {sponsorItems.map((item) => (
-                  <ItemCard
-                    key={item.id}
-                    item={item}
-                    submission={foundMap[item.id]}
-                    session={session}
-                    submissionsOpen={submissionsOpen}
-                    onFound={handleFound}
-                    isSponsor
-                  />
-                ))}
-              </div>
-            </section>
-          </>
+          <div className="mt-6 flex flex-col gap-3">
+            {[...sponsorItems, ...standardItems].map((item) => (
+              <ItemCard
+                key={item.id}
+                item={item}
+                submission={foundMap[item.id]}
+                session={session}
+                submissionsOpen={submissionsOpen}
+                onFound={handleFound}
+                isSponsor={item.item_type === 'sponsor'}
+              />
+            ))}
+          </div>
         )}
       </main>
     </div>
