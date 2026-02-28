@@ -81,12 +81,6 @@ const items = [
 { id: "sponsor_glitter", label: "Sex Plants Rock+Roll — Face full of glitter!", points: 30, item_type: "sponsor" },
 { id: "sponsor_titsdeep", label: "Tits Deep — Deep snow selfie", points: 30, item_type: "sponsor" },
 { id: "sponsor_sunshine", label: "Sunshine Sauna — Post-tour recovery", points: 30, item_type: "sponsor" },
-{ id: "sponsor_glitter", label: "Face full of glitter from Sex Plants & Rock n Roll!", points: 30, item_type: "sponsor" },
-{ id: "sponsor_pact", label: "PACT Outdoors — Wag bags in the backcountry", points: 30, item_type: "sponsor" },
-{ id: "sponsor_breckenridge", label: "Breckenridge Distillery — Mountain Shot Pouch on an adventure", points: 30, item_type: "sponsor" },
-{ id: "sponsor_bestday", label: "Best Day Brewing — At the trailhead", points: 30, item_type: "sponsor" },
-{ id: "sponsor_rmu", label: "RMU Skis — On the skin track", points: 30, item_type: "sponsor" },
-{ id: "sponsor_skilikeagirl", label: "Ski Like a Girl — SWAG in the wild", points: 30, item_type: "sponsor" },
 ];
 
 export default items;
