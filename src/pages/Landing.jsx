@@ -27,10 +27,7 @@ export default function Landing() {
   }, [location.state])
 
   function handleSubmitFind() {
-    // If session exists go straight to hunt; otherwise register first
-    navigate(session ? '/hunt' : '/register', {
-      state: session ? undefined : { intent: 'submit' },
-    })
+    navigate('/submit')
   }
 
   function handleAddTeam() {

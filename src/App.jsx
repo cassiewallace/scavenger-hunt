@@ -6,6 +6,7 @@ import Register from './pages/Register'
 import Hunt from './pages/Hunt'
 import Leaderboard from './pages/Leaderboard'
 import Admin from './pages/Admin'
+import Submit from './pages/Submit'
 
 export default function App() {
   const [submissionsOpen, setSubmissionsOpen] = useState(true)
@@ -64,6 +65,7 @@ export default function App() {
               : <Navigate to="/" replace />
           }
         />
+        <Route path="/submit" element={<Submit />} />
         <Route path="/leaderboard" element={<Leaderboard session={session} />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
