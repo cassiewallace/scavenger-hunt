@@ -72,21 +72,21 @@ export default function Landing() {
 
         {/* CTA buttons */}
         <div className="flex flex-col gap-3 mb-8">
-          {session && (
+          {session ? (
             <button
               onClick={handleSubmitFind}
               className="min-tap w-full rounded-xl border-2 border-brand-primary text-brand-primary font-display text-2xl tracking-wider hover:bg-brand-primary/10 active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
             >
               Submit a Find
             </button>
+          ) : (
+            <button
+              onClick={handleAddTeam}
+              className="min-tap w-full rounded-xl border-2 border-brand-teal text-brand-teal font-display text-2xl tracking-wider hover:bg-brand-teal/10 active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+            >
+              Get Started
+            </button>
           )}
-
-          <button
-            onClick={handleAddTeam}
-            className="min-tap w-full rounded-xl border-2 border-brand-teal text-brand-teal font-display text-2xl tracking-wider hover:bg-brand-teal/10 active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
-          >
-            {session ? 'Change Team' : 'Add a Team'}
-          </button>
         </div>
 
         {/* Leaderboard */}
