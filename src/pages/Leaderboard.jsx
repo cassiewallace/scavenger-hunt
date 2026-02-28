@@ -111,7 +111,6 @@ export default function Leaderboard({ session }) {
                       <span className="ml-2 text-xs font-normal text-brand-teal">(you)</span>
                     )}
                   </div>
-                  <div className="text-xs text-white/40">{team.item_count} item{team.item_count !== 1 ? 's' : ''} found</div>
                 </div>
                 <div className="font-bold text-brand-teal text-lg tabular-nums flex-shrink-0">
                   {team.total_points}
