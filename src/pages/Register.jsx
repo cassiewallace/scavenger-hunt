@@ -71,7 +71,7 @@ export default function Register() {
       <div className="flex-1 flex flex-col justify-center px-6 py-12 max-w-md mx-auto w-full">
         <div className="mb-8 text-center">
           <img
-            src="/venture-out-logo.png"
+            src="/logo.png"
             alt="Venture Out"
             className="w-32 mx-auto mb-4 select-none"
             draggable={false}
