@@ -224,20 +224,18 @@ Edit `src/items.js` — the single source of truth for all hunt items:
 
 ## Open Questions
 
-1. **Sponsor item point values** — currently 10 pts each. Increase to incentivize sponsor engagement?
-2. **Winner announcement** — display winning team on leaderboard after hunt closes, or handle offline at event?
+1. **Winner announcement** — display winning team on leaderboard after hunt closes, or handle offline at event?
 
 ---
 
 ## TODO Checklist
 
 - [x] Save brand logo to `public/logo.png`
-- [ ] Create Supabase project → run SQL → enable Realtime
+- [x] Create Supabase project → run SQL → enable Realtime
 - [x] Fill in `.env.local` with Supabase URL, anon key, admin passphrase
-- [ ] Create Firebase project → update `.firebaserc` project ID
-- [ ] Run `npm run build && firebase deploy`
+- [x] Create Firebase project → update `.firebaserc` project ID
+- [x] Run `npm run build && firebase deploy`
 - [ ] Create short URL (Bit.ly or custom domain)
 - [ ] Generate and print QR code for the event
-- [ ] Test upload flow on iOS and Android before the event
-- [ ] Confirm sponsor item point values (currently 10 pts each)
+- [x] Confirm sponsor item point values (30 pts each)
 - [x] Review `src/items.js` for any last-minute changes
