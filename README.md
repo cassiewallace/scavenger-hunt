@@ -22,9 +22,7 @@ Teams register by entering a name. The same team name on any device resumes the 
 
 ## Brand Image Setup
 
-> **Action required:** Save the Venture Out logo to `public/venture-out-logo.png`.
-
-The app references `/venture-out-logo.png` from the `public/` directory.
+The app references `/logo.png` from the `public/` directory (`public/logo.png`).
 Recommended: PNG, at least 600×600 px.
 
 ---
@@ -224,22 +222,14 @@ Edit `src/items.js` — the single source of truth for all hunt items:
 
 ---
 
-## Open Questions
-
-1. **Sponsor item point values** — currently 10 pts each. Increase to incentivize sponsor engagement?
-2. **Winner announcement** — display winning team on leaderboard after hunt closes, or handle offline at event?
-
----
-
 ## TODO Checklist
 
-- [ ] Save brand logo to `public/venture-out-logo.png`
-- [ ] Create Supabase project → run SQL → enable Realtime
-- [ ] Fill in `.env.local` with Supabase URL, anon key, admin passphrase
-- [ ] Create Firebase project → update `.firebaserc` project ID
-- [ ] Run `npm run build && firebase deploy`
+- [x] Save brand logo to `public/logo.png`
+- [x] Create Supabase project → run SQL → enable Realtime
+- [x] Fill in `.env.local` with Supabase URL, anon key, admin passphrase
+- [x] Create Firebase project → update `.firebaserc` project ID
+- [x] Run `npm run build && firebase deploy`
 - [ ] Create short URL (Bit.ly or custom domain)
 - [ ] Generate and print QR code for the event
-- [ ] Test upload flow on iOS and Android before the event
-- [ ] Confirm sponsor item point values
-- [ ] Review `src/items.js` for any last-minute changes
+- [x] Confirm sponsor item point values (30 pts each)
+- [x] Review `src/items.js` for any last-minute changes

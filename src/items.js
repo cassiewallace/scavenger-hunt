@@ -70,12 +70,12 @@ const items = [
 { id: "glopping", label: "Glopping on your skins (when snow builds and sticks to your climbing skins)", points: 35, item_type: "standard" },
 { id: "coordinated_dance", label: "Video of a coordinated dance with your partner", points: 50, item_type: "standard" },
 { id: "continental_divide", label: "Photo with the Continental Divide sign", points: 20, item_type: "standard" },
-{ id: "sponsor_glitter", label: "Face full of glitter from Sex Plants & Rock n Roll!", points: 10, item_type: "sponsor" },
-{ id: "sponsor_pact", label: "PACT Outdoors — Wag bags in the backcountry", points: 10, item_type: "sponsor" },
-{ id: "sponsor_breckenridge", label: "Breckenridge Distillery — Mountain Shot Pouch on an adventure", points: 10, item_type: "sponsor" },
-{ id: "sponsor_bestday", label: "Best Day Brewing — At the trailhead", points: 10, item_type: "sponsor" },
-{ id: "sponsor_rmu", label: "RMU Skis — On the skin track", points: 10, item_type: "sponsor" },
-{ id: "sponsor_skilikeagirl", label: "Ski Like a Girl — SWAG in the wild", points: 10, item_type: "sponsor" },
+{ id: "sponsor_glitter", label: "Face full of glitter from Sex Plants & Rock n Roll!", points: 30, item_type: "sponsor" },
+{ id: "sponsor_pact", label: "PACT Outdoors — Wag bags in the backcountry", points: 30, item_type: "sponsor" },
+{ id: "sponsor_breckenridge", label: "Breckenridge Distillery — Mountain Shot Pouch on an adventure", points: 30, item_type: "sponsor" },
+{ id: "sponsor_bestday", label: "Best Day Brewing — At the trailhead", points: 30, item_type: "sponsor" },
+{ id: "sponsor_rmu", label: "RMU Skis — On the skin track", points: 30, item_type: "sponsor" },
+{ id: "sponsor_skilikeagirl", label: "Ski Like a Girl — SWAG in the wild", points: 30, item_type: "sponsor" },
 ];
 
 export default items;
