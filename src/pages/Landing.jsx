@@ -43,12 +43,19 @@ export default function Landing() {
           Brand image — save your logo to public/venture-out-logo.png
           Alt text describes the visual for screen readers.
         */}
-        <img
-          src="/venture-out-logo.png"
-          alt="Venture Out Femme Backcountry Festival — Salida, CO"
-          className="w-full max-w-[280px] mx-auto select-none"
-          draggable={false}
-        />
+        <a
+          href="https://www.vntrbirds.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="VNTRbirds website (opens in new tab)"
+        >
+          <img
+            src="/venture-out-logo.png"
+            alt="Venture Out Femme Backcountry Festival — Salida, CO"
+            className="w-full max-w-[280px] mx-auto select-none"
+            draggable={false}
+          />
+        </a>
       </header>
 
       {/* ── Actions + Leaderboard ──────────────────────────────────── */}
@@ -97,18 +104,6 @@ export default function Landing() {
         </section>
       </main>
 
-      {/* ── Footer ────────────────────────────────────────────────── */}
-      <footer className="py-5 text-center">
-        <a
-          href="https://www.vntrbirds.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-white/40 hover:text-white/70 underline underline-offset-4 transition-colors"
-          aria-label="VNTRbirds website (opens in new tab)"
-        >
-          vntrbirds.com
-        </a>
-      </footer>
     </div>
   )
 }
