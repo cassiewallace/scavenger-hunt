@@ -148,7 +148,7 @@ export default function Admin() {
           )}
           <button
             type="submit"
-            className="min-tap w-full rounded-xl bg-brand-primary text-white text-lg font-bold"
+            className="min-tap w-full rounded-xl bg-brand-primary text-white text-lg font-medium"
           >
             Enter
           </button>
@@ -208,7 +208,7 @@ export default function Admin() {
           <button
             onClick={downloadAll}
             disabled={downloading}
-            className="w-full min-tap flex items-center justify-center gap-2 bg-brand-secondary text-brand-bg rounded-xl text-base font-bold shadow-md disabled:opacity-50 active:scale-95 transition-transform"
+            className="w-full min-tap flex items-center justify-center gap-2 bg-brand-secondary text-brand-bg rounded-xl text-base font-medium shadow-md disabled:opacity-50 active:scale-95 transition-transform"
           >
             {downloading ? (
               <>

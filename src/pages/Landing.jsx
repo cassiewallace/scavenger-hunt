@@ -38,11 +38,7 @@ export default function Landing() {
     <div className="min-h-screen bg-brand-bg flex flex-col">
 
       {/* ── Hero ──────────────────────────────────────────────────── */}
-      <header className="flex flex-col items-center pt-10 pb-4 px-6">
-        {/*
-          Brand image — save your logo to public/logo.png
-          Alt text describes the visual for screen readers.
-        */}
+      <header className="flex flex-col items-center pt-6 pb-4 px-3">
         <a
           href="https://www.vntrbirds.com"
           target="_blank"
@@ -52,7 +48,7 @@ export default function Landing() {
           <img
             src="/logo.png"
             alt="Venture Out Femme Backcountry Festival — Salida, CO"
-            className="w-full max-w-[280px] mx-auto select-none"
+            className="w-full select-none"
             draggable={false}
           />
         </a>
@@ -75,16 +71,16 @@ export default function Landing() {
           {session ? (
             <button
               onClick={handleSubmitFind}
-              className="min-tap w-full rounded-xl border-2 border-brand-primary text-brand-primary font-display text-2xl tracking-wider hover:bg-brand-primary/10 active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+              className="min-tap w-full rounded-xl border-2 border-brand-primary text-brand-primary text-xl font-medium hover:bg-brand-primary/10 active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
             >
-              Submit a Find
+              Submit a find
             </button>
           ) : (
             <button
               onClick={handleAddTeam}
-              className="min-tap w-full rounded-xl border-2 border-brand-teal text-brand-teal font-display text-2xl tracking-wider hover:bg-brand-teal/10 active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+              className="min-tap w-full rounded-xl border-2 border-brand-teal text-brand-teal text-xl font-medium hover:bg-brand-teal/10 active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
             >
-              Get Started
+              Get started
             </button>
           )}
         </div>

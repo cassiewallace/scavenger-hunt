@@ -97,7 +97,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, upl
       // bg brand-primary → white text 5.3:1 (WCAG AA)
       <button
         onClick={() => setOpen(true)}
-        className="w-full min-tap flex items-center justify-center gap-1.5 bg-brand-primary text-white rounded-lg text-sm font-semibold active:scale-95 transition-transform"
+        className="w-full min-tap flex items-center justify-center gap-1.5 bg-brand-primary text-white rounded-lg text-sm font-medium active:scale-95 transition-transform"
       >
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
@@ -115,7 +115,6 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, upl
         ref={fileRef}
         type="file"
         accept="image/*,video/*"
-        capture="environment"
         onChange={handleFileChange}
         className="hidden"
         id={`file-${item.id}`}
@@ -210,7 +209,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, upl
         <button
           onClick={handleUpload}
           disabled={!selectedFile || uploading}
-          className="flex-1 min-tap bg-brand-primary text-white rounded-lg text-sm font-semibold disabled:opacity-40 active:scale-95 transition-transform"
+          className="flex-1 min-tap bg-brand-primary text-white rounded-lg text-sm font-medium disabled:opacity-40 active:scale-95 transition-transform"
         >
           {uploading ? (
             <span className="flex items-center gap-1.5">
