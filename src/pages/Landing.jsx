@@ -40,7 +40,7 @@ export default function Landing() {
       {/* ── Hero ──────────────────────────────────────────────────── */}
       <header className="flex flex-col items-center pt-10 pb-4 px-6">
         {/*
-          Brand image — save your logo to public/venture-out-logo.png
+          Brand image — save your logo to public/logo.png
           Alt text describes the visual for screen readers.
         */}
         <a
@@ -50,7 +50,7 @@ export default function Landing() {
           aria-label="VNTRbirds website (opens in new tab)"
         >
           <img
-            src="/venture-out-logo.png"
+            src="/logo.png"
             alt="Venture Out Femme Backcountry Festival — Salida, CO"
             className="w-full max-w-[280px] mx-auto select-none"
             draggable={false}
