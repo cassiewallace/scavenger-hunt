@@ -71,18 +71,14 @@ export default function Landing() {
           */}
           <button
             onClick={handleSubmitFind}
-            className="min-tap w-full rounded-xl bg-brand-primary text-white text-lg font-bold shadow-lg active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+            className="min-tap w-full rounded-xl border-2 border-brand-primary text-brand-primary font-display text-2xl tracking-wider hover:bg-brand-primary/10 active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
           >
             Submit a Find
           </button>
 
-          {/*
-            "Add a Team"
-            bg: brand-secondary teal #26c4bc → dark text #0f0f0f → 9.4:1 contrast (WCAG AAA ✓)
-          */}
           <button
             onClick={handleAddTeam}
-            className="min-tap w-full rounded-xl bg-brand-secondary text-brand-bg text-lg font-bold shadow-lg active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-secondary"
+            className="min-tap w-full rounded-xl border-2 border-brand-teal text-brand-teal font-display text-2xl tracking-wider hover:bg-brand-teal/10 active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
           >
             Add a Team
           </button>

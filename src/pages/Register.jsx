@@ -104,11 +104,10 @@ export default function Register() {
             </div>
           )}
 
-          {/* bg brand-primary → white text 5.3:1 (WCAG AA) */}
           <button
             type="submit"
             disabled={loading || !teamName.trim()}
-            className="min-tap w-full rounded-xl bg-brand-primary text-white text-lg font-bold shadow-lg disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-transform mt-2"
+            className="min-tap w-full rounded-xl border-2 border-brand-primary text-brand-primary font-display text-2xl tracking-wider hover:bg-brand-primary/10 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-transform mt-2"
           >
             {loading ? (
               <span className="flex items-center gap-2">

@@ -132,13 +132,13 @@ export default function Submit() {
           <div className="flex flex-col gap-3">
             <button
               onClick={() => { setDone(false); setSelectedFile(null); setItemId(''); setIgUrl(''); setProgress(0); setTeamId(''); setTeamQuery('') }}
-              className="min-tap w-full rounded-xl bg-brand-primary text-white text-lg font-bold active:scale-95 transition-transform"
+              className="min-tap w-full rounded-xl border-2 border-brand-primary text-brand-primary font-display text-2xl tracking-wider hover:bg-brand-primary/10 active:scale-95 transition-transform"
             >
               Submit Another Find
             </button>
             <button
               onClick={() => navigate('/')}
-              className="min-tap w-full rounded-xl border border-white/20 text-white/70 text-lg font-semibold active:scale-95 transition-transform"
+              className="min-tap w-full rounded-xl border border-white/20 text-white/50 font-display text-2xl tracking-wider hover:bg-white/5 active:scale-95 transition-transform"
             >
               Back to Home
             </button>
@@ -332,7 +332,7 @@ export default function Submit() {
           <button
             type="submit"
             disabled={!teamId || !itemId || !selectedFile || uploading}
-            className="min-tap w-full rounded-xl bg-brand-primary text-white text-lg font-bold shadow-lg disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-transform mt-2"
+            className="min-tap w-full rounded-xl border-2 border-brand-primary text-brand-primary font-display text-2xl tracking-wider hover:bg-brand-primary/10 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-transform mt-2"
           >
             {uploading ? (
               <span className="flex items-center justify-center gap-2">
