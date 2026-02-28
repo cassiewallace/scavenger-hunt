@@ -83,7 +83,7 @@ export default function Leaderboard({ session }) {
         ) : rows.length === 0 ? (
           <div className="mt-16 text-center text-white/40 text-sm" aria-live="polite">No submissions yet — be the first!</div>
         ) : (
-          <ol className="mt-6 flex flex-col gap-2" aria-label="Live leaderboard">
+          <ol className="mt-6 flex flex-col gap-2" aria-label="Leaderboard">
             {rows.map((team, idx) => (
               <li
                 key={team.team_id}
@@ -111,7 +111,6 @@ export default function Leaderboard({ session }) {
                       <span className="ml-2 text-xs font-normal text-brand-teal">(you)</span>
                     )}
                   </div>
-                  <div className="text-xs text-white/40">{team.item_count} item{team.item_count !== 1 ? 's' : ''} found</div>
                 </div>
                 <div className="font-bold text-brand-teal text-lg tabular-nums flex-shrink-0">
                   {team.total_points}

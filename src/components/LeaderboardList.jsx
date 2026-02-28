@@ -89,7 +89,7 @@ export default function LeaderboardList({ currentTeamId, compact = false }) {
   ]
 
   return (
-    <ol aria-label="Live leaderboard" className="flex flex-col gap-2">
+    <ol aria-label="Leaderboard" className="flex flex-col gap-2">
       {rows.map((team, idx) => {
         const isCurrentTeam = team.team_id === currentTeamId
         const medalClass = medalColors[idx] ?? 'bg-white/10 text-white/70'
@@ -121,12 +121,7 @@ export default function LeaderboardList({ currentTeamId, compact = false }) {
                   <span className="ml-2 text-xs font-normal text-brand-teal">(you)</span>
                 )}
               </div>
-              {!compact && (
-                <div className="text-xs text-white/50 mt-0.5">
-                  {team.item_count} item{team.item_count !== 1 ? 's' : ''} found
-                </div>
-              )}
-            </div>
+              </div>
 
             {/* Score */}
             <div className="font-bold text-brand-teal text-lg tabular-nums flex-shrink-0">
