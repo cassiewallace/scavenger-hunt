@@ -89,7 +89,7 @@ export default function LeaderboardList({ currentTeamId, compact = false }) {
   ]
 
   return (
-    <ol aria-label="Live leaderboard" className="flex flex-col gap-2">
+    <ol aria-label="Leaderboard" className="flex flex-col gap-2">
       {rows.map((team, idx) => {
         const isCurrentTeam = team.team_id === currentTeamId
         const medalClass = medalColors[idx] ?? 'bg-white/10 text-white/70'

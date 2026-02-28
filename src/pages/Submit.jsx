@@ -11,6 +11,9 @@ export default function Submit() {
 
   const [teams, setTeams] = useState([])
   const [teamId, setTeamId] = useState('')
+  const [teamQuery, setTeamQuery] = useState('')
+  const [teamDropdownOpen, setTeamDropdownOpen] = useState(false)
+  const teamComboRef = useRef(null)
   const [itemId, setItemId] = useState('')
   const [selectedFile, setSelectedFile] = useState(null)
   const [sizeWarning, setSizeWarning] = useState(false)
@@ -29,6 +32,26 @@ export default function Submit() {
         if (data) setTeams(data)
       })
   }, [])
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (teamComboRef.current && !teamComboRef.current.contains(e.target)) {
+        setTeamDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const filteredTeams = teams.filter(t =>
+    t.team_name.toLowerCase().includes(teamQuery.toLowerCase())
+  )
+
+  function selectTeam(team) {
+    setTeamId(team.id)
+    setTeamQuery(team.team_name)
+    setTeamDropdownOpen(false)
+  }
 
   const selectedItem = items.find(i => i.id === itemId)
   const isHypeVideo = itemId === 'hype_video'
@@ -108,7 +131,7 @@ export default function Submit() {
           <p className="text-white/60 mb-8">+{selectedItem?.points} pts for {teams.find(t => t.id === teamId)?.team_name}</p>
           <div className="flex flex-col gap-3">
             <button
-              onClick={() => { setDone(false); setSelectedFile(null); setItemId(''); setIgUrl(''); setProgress(0) }}
+              onClick={() => { setDone(false); setSelectedFile(null); setItemId(''); setIgUrl(''); setProgress(0); setTeamId(''); setTeamQuery('') }}
               className="min-tap w-full rounded-xl bg-brand-primary text-white text-lg font-bold active:scale-95 transition-transform"
             >
               Submit Another Find
@@ -143,23 +166,54 @@ export default function Submit() {
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
-          {/* Team dropdown */}
-          <div>
-            <label htmlFor="team" className="block text-sm font-semibold text-white/80 mb-2">
+          {/* Team combobox */}
+          <div ref={teamComboRef} className="relative">
+            <label htmlFor="team-input" className="block text-sm font-semibold text-white/80 mb-2">
               Team
             </label>
-            <select
-              id="team"
-              value={teamId}
-              onChange={e => setTeamId(e.target.value)}
-              className="w-full px-4 py-4 rounded-xl border-2 border-white/10 focus:border-brand-teal focus:outline-none text-base text-white bg-brand-surface transition-colors appearance-none"
+            <input
+              id="team-input"
+              type="text"
+              autoComplete="off"
+              placeholder="Select or type your team…"
+              value={teamQuery}
+              onChange={e => {
+                setTeamQuery(e.target.value)
+                setTeamId('')
+                setTeamDropdownOpen(true)
+              }}
+              onFocus={() => setTeamDropdownOpen(true)}
+              className="w-full px-4 py-4 rounded-xl border-2 border-white/10 focus:border-brand-teal focus:outline-none text-base text-white bg-brand-surface transition-colors placeholder:text-white/30"
               required
-            >
-              <option value="" disabled className="text-white/30">Select your team…</option>
-              {teams.map(t => (
-                <option key={t.id} value={t.id} className="text-white bg-brand-surface">{t.team_name}</option>
-              ))}
-            </select>
+            />
+            {teamDropdownOpen && filteredTeams.length > 0 && (
+              <ul
+                role="listbox"
+                className="absolute z-10 mt-1 w-full bg-brand-surface border border-white/10 rounded-xl overflow-auto max-h-56 shadow-xl"
+              >
+                {filteredTeams.map(t => (
+                  <li
+                    key={t.id}
+                    role="option"
+                    aria-selected={t.id === teamId}
+                    onMouseDown={() => selectTeam(t)}
+                    className={[
+                      'px-4 py-3 text-base cursor-pointer transition-colors',
+                      t.id === teamId
+                        ? 'bg-brand-teal/20 text-brand-teal font-semibold'
+                        : 'text-white hover:bg-white/10',
+                    ].join(' ')}
+                  >
+                    {t.team_name}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {teamDropdownOpen && filteredTeams.length === 0 && teamQuery && (
+              <div className="absolute z-10 mt-1 w-full bg-brand-surface border border-white/10 rounded-xl px-4 py-3 text-white/40 text-sm shadow-xl">
+                No teams match "{teamQuery}"
+              </div>
+            )}
           </div>
 
           {/* Item dropdown */}

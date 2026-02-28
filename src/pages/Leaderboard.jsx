@@ -83,7 +83,7 @@ export default function Leaderboard({ session }) {
         ) : rows.length === 0 ? (
           <div className="mt-16 text-center text-white/40 text-sm" aria-live="polite">No submissions yet — be the first!</div>
         ) : (
-          <ol className="mt-6 flex flex-col gap-2" aria-label="Live leaderboard">
+          <ol className="mt-6 flex flex-col gap-2" aria-label="Leaderboard">
             {rows.map((team, idx) => (
               <li
                 key={team.team_id}

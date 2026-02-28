@@ -88,19 +88,15 @@ export default function Landing() {
           </button>
         </div>
 
-        {/* Live Leaderboard */}
+        {/* Leaderboard */}
         <section aria-labelledby="lb-heading">
           <div className="flex items-center justify-between mb-3">
             <h2
               id="lb-heading"
               className="text-xs font-bold tracking-widest uppercase text-white/50"
             >
-              Live Leaderboard
+              Leaderboard
             </h2>
-            <span className="flex items-center gap-1.5 text-xs text-brand-teal font-semibold" aria-hidden="true">
-              <span className="inline-block w-2 h-2 rounded-full bg-brand-teal animate-pulse" />
-              Live
-            </span>
           </div>
 
           <LeaderboardList currentTeamId={session?.team_id} />
