@@ -43,12 +43,19 @@ export default function Landing() {
           Brand image — save your logo to public/venture-out-logo.png
           Alt text describes the visual for screen readers.
         */}
-        <img
-          src="/venture-out-logo.png"
-          alt="Venture Out Femme Backcountry Festival — Salida, CO"
-          className="w-full max-w-[280px] mx-auto select-none"
-          draggable={false}
-        />
+        <a
+          href="https://www.vntrbirds.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="VNTRbirds website (opens in new tab)"
+        >
+          <img
+            src="/venture-out-logo.png"
+            alt="Venture Out Femme Backcountry Festival — Salida, CO"
+            className="w-full max-w-[280px] mx-auto select-none"
+            draggable={false}
+          />
+        </a>
       </header>
 
       {/* ── Actions + Leaderboard ──────────────────────────────────── */}
@@ -65,26 +72,20 @@ export default function Landing() {
 
         {/* CTA buttons */}
         <div className="flex flex-col gap-3 mb-8">
-          {/*
-            "Submit a Find"
-            bg: brand-primary #b030ba → white text → 5.3:1 contrast (WCAG AA ✓)
-          */}
-          <button
-            onClick={handleSubmitFind}
-            className="min-tap w-full rounded-xl bg-brand-primary text-white text-lg font-bold shadow-lg active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
-          >
-            Submit a Find
-          </button>
+          {session && (
+            <button
+              onClick={handleSubmitFind}
+              className="min-tap w-full rounded-xl border-2 border-brand-primary text-brand-primary font-display text-2xl tracking-wider hover:bg-brand-primary/10 active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+            >
+              Submit a Find
+            </button>
+          )}
 
-          {/*
-            "Add a Team"
-            bg: brand-secondary teal #26c4bc → dark text #0f0f0f → 9.4:1 contrast (WCAG AAA ✓)
-          */}
           <button
             onClick={handleAddTeam}
-            className="min-tap w-full rounded-xl bg-brand-secondary text-brand-bg text-lg font-bold shadow-lg active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-secondary"
+            className="min-tap w-full rounded-xl border-2 border-brand-teal text-brand-teal font-display text-2xl tracking-wider hover:bg-brand-teal/10 active:scale-95 transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
           >
-            Add a Team
+            {session ? 'Change Team' : 'Add a Team'}
           </button>
         </div>
 
@@ -103,18 +104,6 @@ export default function Landing() {
         </section>
       </main>
 
-      {/* ── Footer ────────────────────────────────────────────────── */}
-      <footer className="py-5 text-center">
-        <a
-          href="https://www.vntrbirds.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-white/40 hover:text-white/70 underline underline-offset-4 transition-colors"
-          aria-label="VNTRbirds website (opens in new tab)"
-        >
-          vntrbirds.com
-        </a>
-      </footer>
     </div>
   )
 }
