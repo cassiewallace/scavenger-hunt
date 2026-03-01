@@ -170,26 +170,10 @@ Your app will be live at: **`https://your-project-id.web.app`**
 
 ---
 
-## Step 3 — Short URL & QR Code
-
-A short URL is much easier to print and announce verbally at the event.
-
-### Option A — Bit.ly (quickest)
-
-1. Go to [bitly.com](https://bitly.com) → create a free account
-2. Click **Create new → Link**
-3. Paste your Firebase URL: `https://your-project-id.web.app`
-4. Customize the back-half (e.g., `vntrbirds-hunt`) → **Create**
-5. Result: `https://bit.ly/vntrbirds-hunt`
-
-### Option B — Custom subdomain
-
-Use a Firebase custom domain like `hunt.vntrbirds.com` (see Step 2.4 above).
-
-### Generate a QR code
+## Step 3 — QR Code
 
 1. Go to [qr-code-generator.com](https://www.qr-code-generator.com) or [goqr.me](https://goqr.me)
-2. Paste your short URL
+2. Paste your Firebase URL: `https://your-project-id.web.app`
 3. Download as PNG or SVG (at least 500×500 px for print)
 4. Print and post at the Scout Hut / event HQ
 
@@ -229,7 +213,6 @@ Edit `src/items.js` — the single source of truth for all hunt items:
 - [x] Fill in `.env.local` with Supabase URL, anon key, admin passphrase
 - [x] Create Firebase project → update `.firebaserc` project ID
 - [x] Run `npm run build && firebase deploy`
-- [ ] Create short URL (Bit.ly or custom domain)
 - [ ] Generate and print QR code for the event
 - [x] Confirm sponsor item point values (30 pts each)
 - [x] Review `src/items.js` for any last-minute changes
