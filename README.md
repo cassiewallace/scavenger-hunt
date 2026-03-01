@@ -213,6 +213,5 @@ Edit `src/items.js` — the single source of truth for all hunt items:
 - [x] Fill in `.env.local` with Supabase URL, anon key, admin passphrase
 - [x] Create Firebase project → update `.firebaserc` project ID
 - [x] Run `npm run build && firebase deploy`
-- [ ] Generate and print QR code for the event
 - [x] Confirm sponsor item point values (30 pts each)
 - [x] Review `src/items.js` for any last-minute changes
