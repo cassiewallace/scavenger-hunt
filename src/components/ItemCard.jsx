@@ -31,8 +31,9 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
     setTimeout(() => setAlreadyFound(false), 3000)
   }
 
-  const logoFile = isSponsor ? sponsorLogos[item.id] : null
-  const logoSrc = logoFile ? `/sponsors/${logoFile}` : null
+  const logoConfig = isSponsor ? sponsorLogos[item.id] : null
+  const logoSrc = logoConfig ? `/sponsors/${logoConfig.file}` : null
+  const logoInvert = logoConfig?.invert ?? false
 
   // Card: dark surface; sponsor gets magenta left accent border
   const cardBase = [
@@ -48,12 +49,12 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
       {/* Sponsor logo strip */}
       {logoSrc && (
         <div className="flex items-center justify-center px-4 pt-3 pb-2">
-          {/* Use transparent-background PNGs; invert dark logos for dark surface */}
           <img
             src={logoSrc}
             alt=""
             aria-hidden="true"
             className="max-h-10 max-w-[160px] w-auto object-contain"
+            style={logoInvert ? { filter: 'invert(1)' } : undefined}
           />
         </div>
       )}
