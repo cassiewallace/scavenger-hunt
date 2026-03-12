@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../lib/supabase'
 import UploadFlow from './UploadFlow'
+import sponsorLogos from '../constants/sponsorLogos'
 
 export default function ItemCard({ item, submission, session, submissionsOpen, onFound, isSponsor }) {
   const [uploading, setUploading] = useState(false)
@@ -30,6 +31,10 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
     setTimeout(() => setAlreadyFound(false), 3000)
   }
 
+  const logoConfig = isSponsor ? sponsorLogos[item.id] : null
+  const logoSrc = logoConfig ? `/sponsors/${logoConfig.file}` : null
+  const logoLightBg = logoConfig?.lightBg ?? false
+
   // Card: dark surface; sponsor gets magenta left accent border
   const cardBase = [
     'rounded-xl bg-brand-surface border transition-all duration-300 overflow-hidden',
@@ -41,6 +46,28 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
 
   return (
     <div className={cardBase}>
+      {/* Sponsor logo strip */}
+      {logoSrc && (
+        <div className="flex items-center justify-center px-4 pt-3 pb-2">
+          {logoLightBg ? (
+            <div className="bg-white rounded-lg px-3 py-1.5 flex items-center justify-center">
+              <img
+                src={logoSrc}
+                alt=""
+                aria-hidden="true"
+                className="max-h-8 max-w-[140px] w-auto object-contain"
+              />
+            </div>
+          ) : (
+            <img
+              src={logoSrc}
+              alt=""
+              aria-hidden="true"
+              className="max-h-10 max-w-[160px] w-auto object-contain"
+            />
+          )}
+        </div>
+      )}
       <div className="flex items-start gap-3 px-4 py-3">
         {/* Found thumbnail */}
         {isFound && thumbUrl && (
