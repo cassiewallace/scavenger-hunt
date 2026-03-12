@@ -1,20 +1,20 @@
 // Maps sponsor item IDs to logo config for public/sponsors/<file>
-// invert: true  → CSS filter: invert(1), use for black-on-white logos with no transparent-bg version
-// invert: false → use for already-light or white-on-transparent logos
+// lightBg: true  → logo is shown on a white rounded pill (use for colored/dark logos with white bg)
+// lightBg: false → logo shown directly on dark card surface (use for white/light transparent logos)
 
 const sponsorLogos = {
-  sponsor_karitraa:     { file: 'karitraa.png',     invert: false },
-  sponsor_skilikeagirl: { file: 'skilikeagirl.png', invert: false },
-  sponsor_rmu:          { file: 'rmu.png',          invert: true  },
-  sponsor_bestday:      { file: 'bestday.png',      invert: false },
-  sponsor_beacon:       { file: 'beacon.png',       invert: false },
-  sponsor_salidamtn:    { file: 'salidamtn.png',    invert: false },
-  sponsor_coalition:    { file: 'coalition.png',    invert: false },
-  sponsor_breckmassage: { file: 'breckmassage.png', invert: false },
-  sponsor_breckenridge: { file: 'breckenridge.png', invert: false },
-  sponsor_glitter:      { file: 'glitter.png',      invert: false },
-  sponsor_titsdeep:     { file: 'titsdeep.png',     invert: false },
-  sponsor_sunshine:     { file: 'sunshine.png',     invert: false },
+  sponsor_karitraa:     { file: 'karitraa.png',     lightBg: true  },
+  sponsor_skilikeagirl: { file: 'skilikeagirl.png', lightBg: true  },
+  sponsor_rmu:          { file: 'rmu.png',          lightBg: true  },
+  sponsor_bestday:      { file: 'bestday.png',      lightBg: true  },
+  sponsor_beacon:       { file: 'beacon.png',       lightBg: true  },
+  sponsor_salidamtn:    { file: 'salidamtn.png',    lightBg: false },
+  sponsor_coalition:    { file: 'coalition.png',    lightBg: false },
+  sponsor_breckmassage: { file: 'breckmassage.png', lightBg: true  },
+  sponsor_breckenridge: { file: 'breckenridge.png', lightBg: true  },
+  sponsor_glitter:      { file: 'glitter.png',      lightBg: true  },
+  sponsor_titsdeep:     { file: 'titsdeep.png',     lightBg: true  },
+  sponsor_sunshine:     { file: 'sunshine.png',     lightBg: true  },
 }
 
 export default sponsorLogos

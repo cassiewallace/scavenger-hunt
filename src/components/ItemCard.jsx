@@ -33,7 +33,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
 
   const logoConfig = isSponsor ? sponsorLogos[item.id] : null
   const logoSrc = logoConfig ? `/sponsors/${logoConfig.file}` : null
-  const logoInvert = logoConfig?.invert ?? false
+  const logoLightBg = logoConfig?.lightBg ?? false
 
   // Card: dark surface; sponsor gets magenta left accent border
   const cardBase = [
@@ -49,13 +49,23 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
       {/* Sponsor logo strip */}
       {logoSrc && (
         <div className="flex items-center justify-center px-4 pt-3 pb-2">
-          <img
-            src={logoSrc}
-            alt=""
-            aria-hidden="true"
-            className="max-h-10 max-w-[160px] w-auto object-contain"
-            style={logoInvert ? { filter: 'invert(1)' } : undefined}
-          />
+          {logoLightBg ? (
+            <div className="bg-white rounded-lg px-3 py-1.5 flex items-center justify-center">
+              <img
+                src={logoSrc}
+                alt=""
+                aria-hidden="true"
+                className="max-h-8 max-w-[140px] w-auto object-contain"
+              />
+            </div>
+          ) : (
+            <img
+              src={logoSrc}
+              alt=""
+              aria-hidden="true"
+              className="max-h-10 max-w-[160px] w-auto object-contain"
+            />
+          )}
         </div>
       )}
       <div className="flex items-start gap-3 px-4 py-3">
