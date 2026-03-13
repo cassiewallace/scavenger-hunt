@@ -3,8 +3,7 @@ import { supabase } from '../lib/supabase'
 
 const MAX_FILE_MB = 50
 
-export default function UploadFlow({ item, session, onFound, onAlreadyFound, uploading, setUploading }) {
-  const [open, setOpen] = useState(false)
+export default function UploadFlow({ item, session, onFound, onAlreadyFound, onClose, uploading, setUploading }) {
   const [selectedFile, setSelectedFile] = useState(null)
   const [igUrl, setIgUrl] = useState('')
   const [progress, setProgress] = useState(0)
@@ -70,7 +69,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, upl
       // Handle unique constraint — item already submitted
       if (insertErr?.code === '23505' || insertErr?.message?.includes('unique')) {
         setProgress(0)
-        setOpen(false)
+        onClose()
         setSelectedFile(null)
         onAlreadyFound()
         return
@@ -80,7 +79,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, upl
 
       setProgress(100)
       onFound(sub)
-      setOpen(false)
+      onClose()
       setSelectedFile(null)
       setIgUrl('')
       setProgress(0)
@@ -90,22 +89,6 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, upl
     } finally {
       setUploading(false)
     }
-  }
-
-  if (!open) {
-    return (
-      // bg brand-primary → white text 5.3:1 (WCAG AA)
-      <button
-        onClick={() => setOpen(true)}
-        className="w-full min-tap flex items-center justify-center gap-1.5 bg-brand-primary text-white rounded-lg text-sm font-medium active:scale-95 transition-transform"
-      >
-        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-        Submit Find
-      </button>
-    )
   }
 
   return (
@@ -199,7 +182,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, upl
 
       <div className="flex gap-2">
         <button
-          onClick={() => { setOpen(false); setSelectedFile(null); setError(''); setProgress(0) }}
+          onClick={() => { onClose(); setSelectedFile(null); setError(''); setProgress(0) }}
           disabled={uploading}
           className="flex-1 min-tap border border-white/10 text-white/70 rounded-lg text-sm font-medium disabled:opacity-50"
         >
