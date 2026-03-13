@@ -59,7 +59,7 @@ export default function Submit() {
         <div className="max-w-2xl mx-auto flex items-center justify-between">
           <button
             onClick={() => navigate('/')}
-            className="flex items-center gap-1.5 text-white/50 text-sm min-tap -ml-1"
+            className="flex items-center gap-1.5 text-white/70 text-sm min-tap -ml-1"
             aria-label="Back to home"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -67,7 +67,7 @@ export default function Submit() {
             </svg>
             Back
           </button>
-          <span className="text-white/60 text-sm">{session?.team_name}</span>
+          <span className="text-white/80 text-sm">{session?.team_name}</span>
         </div>
       </header>
 
@@ -79,14 +79,14 @@ export default function Submit() {
             placeholder="Filter items…"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-white/10 focus:border-brand-teal focus:outline-none text-sm text-white bg-brand-surface placeholder:text-white/30 transition-colors"
+            className="w-full px-4 py-3 rounded-xl border border-white/10 focus:border-brand-teal focus:outline-none text-sm text-white bg-brand-surface placeholder:text-white/50 transition-colors"
           />
         </div>
 
         {loading ? (
-          <div className="mt-16 text-center text-white/40 text-sm">Loading…</div>
+          <div className="mt-16 text-center text-white/60 text-sm">Loading…</div>
         ) : filtered.length === 0 ? (
-          <div className="mt-16 text-center text-white/40 text-sm">No items match "{filter}"</div>
+          <div className="mt-16 text-center text-white/60 text-sm">No items match "{filter}"</div>
         ) : (
           <div className="flex flex-col gap-3">
             {filtered.map((item) => (

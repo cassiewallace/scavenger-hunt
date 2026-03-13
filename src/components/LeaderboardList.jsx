@@ -79,14 +79,14 @@ export default function LeaderboardList({ currentTeamId, compact = false, showHe
   return (
     <>
     {showHeading && (
-      <h2 className="text-xs font-bold tracking-widest uppercase text-white/50 mb-3">
+      <h2 className="text-xs font-bold tracking-widest uppercase text-white/70 mb-3">
         Leaderboard
       </h2>
     )}
     <ol aria-label="Leaderboard" className="flex flex-col gap-2">
       {rows.map((team, idx) => {
         const isCurrentTeam = team.team_id === currentTeamId
-        const medalClass = medalColors[idx] ?? 'bg-white/10 text-white/70'
+        const medalClass = medalColors[idx] ?? 'bg-white/10 text-white/80'
 
         return (
           <li

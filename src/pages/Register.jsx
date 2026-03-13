@@ -104,7 +104,7 @@ export default function Register() {
             className="w-32 mx-auto mb-4 select-none"
             draggable={false}
           />
-          <p className="text-white/60 text-base">Ready to hunt?</p>
+          <p className="text-white/80 text-base">Ready to hunt?</p>
         </div>
 
         {/* Mode tabs */}
@@ -120,7 +120,7 @@ export default function Register() {
               className={`flex-1 py-3 text-sm font-medium transition-colors ${
                 mode === key
                   ? 'bg-brand-surface text-white'
-                  : 'text-white/40 hover:text-white/60'
+                  : 'text-white/60 hover:text-white/80'
               }`}
             >
               {label}
@@ -140,7 +140,7 @@ export default function Register() {
                 value={teamName}
                 onChange={(e) => setTeamName(e.target.value)}
                 placeholder="Your team name (or your name if flying solo)"
-                className="w-full px-4 py-4 rounded-xl border-2 border-white/10 focus:border-brand-teal focus:outline-none text-base text-white bg-brand-surface placeholder:text-white/30 transition-colors"
+                className="w-full px-4 py-4 rounded-xl border-2 border-white/10 focus:border-brand-teal focus:outline-none text-base text-white bg-brand-surface placeholder:text-white/50 transition-colors"
                 autoFocus
                 autoComplete="off"
                 maxLength={80}
@@ -152,9 +152,9 @@ export default function Register() {
                 Pick a team to join
               </label>
               {teamsLoading ? (
-                <div className="text-white/40 text-sm py-3">Loading teams…</div>
+                <div className="text-white/60 text-sm py-3">Loading teams…</div>
               ) : availableTeams.length === 0 ? (
-                <div className="text-white/50 text-sm py-3">
+                <div className="text-white/70 text-sm py-3">
                   No open teams right now — try creating one!
                 </div>
               ) : (
@@ -199,7 +199,7 @@ export default function Register() {
         </form>
 
         {mode === 'create' && (
-          <p className="mt-6 text-center text-sm text-white/40">
+          <p className="mt-6 text-center text-sm text-white/60">
             Already registered? Use the same team name to resume your session on any device.
           </p>
         )}

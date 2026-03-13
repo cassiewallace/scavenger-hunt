@@ -136,7 +136,7 @@ export default function Admin() {
             value={passphraseInput}
             onChange={(e) => { setPassphraseInput(e.target.value); setPassphraseError(false) }}
             placeholder="Enter passphrase"
-            className={`w-full px-4 py-4 rounded-xl border-2 focus:outline-none text-base text-white bg-brand-surface placeholder:text-white/30 transition-colors ${
+            className={`w-full px-4 py-4 rounded-xl border-2 focus:outline-none text-base text-white bg-brand-surface placeholder:text-white/50 transition-colors ${
               passphraseError ? 'border-brand-error' : 'border-white/10 focus:border-brand-teal'
             }`}
             autoFocus
@@ -164,7 +164,7 @@ export default function Admin() {
           <h1 className="font-display text-4xl leading-none text-white">Admin</h1>
           <button
             onClick={() => { sessionStorage.removeItem('vntrbirds_admin'); setAuthed(false) }}
-            className="text-xs text-white/50 underline underline-offset-2"
+            className="text-xs text-white/70 underline underline-offset-2"
           >
             Sign out
           </button>
@@ -177,7 +177,7 @@ export default function Admin() {
           <div className="flex items-center justify-between">
             <div>
               <div className="font-semibold text-white text-base">Submissions Open / Closed</div>
-              <div className="text-sm text-white/50 mt-0.5">
+              <div className="text-sm text-white/70 mt-0.5">
                 Currently:{' '}
                 <span className={submissionsOpen ? 'text-brand-success font-bold' : 'text-brand-error font-bold'}>
                   {submissionsOpen ? 'OPEN' : 'CLOSED'}
@@ -229,14 +229,14 @@ export default function Admin() {
 
         {/* Teams */}
         <section className="mt-6">
-          <h2 className="text-xs font-bold tracking-widest uppercase text-white/40 mb-3">
+          <h2 className="text-xs font-bold tracking-widest uppercase text-white/70 mb-3">
             Teams ({teams.length})
           </h2>
 
           {loading ? (
-            <div className="text-center text-white/40 text-sm py-10">Loading…</div>
+            <div className="text-center text-white/60 text-sm py-10">Loading…</div>
           ) : teams.length === 0 ? (
-            <div className="text-center text-white/40 text-sm py-10">No submissions yet.</div>
+            <div className="text-center text-white/60 text-sm py-10">No submissions yet.</div>
           ) : (
             <div className="flex flex-col gap-3">
               {teams.map((team) => (
@@ -248,12 +248,12 @@ export default function Admin() {
                   >
                     <div>
                       <div className="font-semibold text-white">{team.team_name}</div>
-                      <div className="text-sm text-white/40">{team.submissions.length} item{team.submissions.length !== 1 ? 's' : ''}</div>
+                      <div className="text-sm text-white/60">{team.submissions.length} item{team.submissions.length !== 1 ? 's' : ''}</div>
                     </div>
                     <div className="flex items-center gap-3">
                       <span className="font-bold text-brand-teal text-lg">{team.total_points} pts</span>
                       <svg
-                        className={`w-5 h-5 text-white/40 transition-transform ${expandedTeam === team.team_id ? 'rotate-180' : ''}`}
+                        className={`w-5 h-5 text-white/60 transition-transform ${expandedTeam === team.team_id ? 'rotate-180' : ''}`}
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -305,7 +305,7 @@ function AdminSubmissionRow({ sub }) {
         <div className="font-medium text-white text-sm truncate">{sub.item_label}</div>
         <div className="flex items-center gap-2 mt-0.5">
           <span className="text-xs text-brand-teal font-semibold">{sub.points} pts</span>
-          <span className="text-xs text-white/40">
+          <span className="text-xs text-white/60">
             {new Date(sub.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </span>
         </div>

@@ -101,7 +101,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
                       <img src={logoSrc} alt={sponsorName} onError={() => setLogoFailed(true)} className="h-6 w-auto object-contain max-w-[120px]" />
                     )
                   ) : (
-                    <p className="text-white/50 text-xs font-semibold uppercase tracking-wide">{sponsorName}</p>
+                    <p className="text-white/70 text-xs font-semibold uppercase tracking-wide">{sponsorName}</p>
                   )}
                 </div>
               )}
