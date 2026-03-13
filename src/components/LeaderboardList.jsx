@@ -66,15 +66,7 @@ export default function LeaderboardList({ currentTeamId, compact = false, showHe
     return () => supabase.removeChannel(channel)
   }, [])
 
-  if (loading) {
-    return (
-      <div className="py-8 text-center text-white/50 text-sm" aria-live="polite">
-        Loading scores…
-      </div>
-    )
-  }
-
-  if (rows.length === 0) {
+  if (loading || rows.length === 0) {
     return null
   }
 

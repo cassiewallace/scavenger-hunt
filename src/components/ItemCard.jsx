@@ -9,6 +9,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
   const [thumbUrl, setThumbUrl] = useState(null)
   const [alreadyFound, setAlreadyFound] = useState(false)
   const [uploadOpen, setUploadOpen] = useState(false)
+  const [logoFailed, setLogoFailed] = useState(false)
 
   const isFound = !!submission
 
@@ -91,13 +92,13 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
               {/* Line 1 (sponsor only): logo or sponsor name */}
               {isSponsor && (
                 <div className="mb-1">
-                  {logoSrc ? (
+                  {logoSrc && !logoFailed ? (
                     logoLightBg ? (
                       <div className="bg-white rounded px-2 py-0.5 inline-flex items-center">
-                        <img src={logoSrc} alt={sponsorName} className="h-5 w-auto object-contain max-w-[110px]" />
+                        <img src={logoSrc} alt={sponsorName} onError={() => setLogoFailed(true)} className="h-5 w-auto object-contain max-w-[110px]" />
                       </div>
                     ) : (
-                      <img src={logoSrc} alt={sponsorName} className="h-6 w-auto object-contain max-w-[120px]" />
+                      <img src={logoSrc} alt={sponsorName} onError={() => setLogoFailed(true)} className="h-6 w-auto object-contain max-w-[120px]" />
                     )
                   ) : (
                     <p className="text-white/50 text-xs font-semibold uppercase tracking-wide">{sponsorName}</p>
@@ -105,7 +106,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
                 </div>
               )}
               {/* Line 2 (or only line): item description */}
-              <p className="text-white font-semibold text-base leading-snug">{isSponsor ? itemDesc : item.label}</p>
+              <p className="text-white font-semibold text-lg leading-snug">{isSponsor ? itemDesc : item.label}</p>
               {alreadyFound && (
                 <p className="text-xs text-brand-magentaVibrant font-medium mt-0.5">Already submitted!</p>
               )}
