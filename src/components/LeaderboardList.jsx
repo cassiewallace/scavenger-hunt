@@ -6,7 +6,7 @@ import { supabase } from '../lib/supabase'
  * Subscribes to Supabase Realtime for instant updates.
  * Used by both Landing.jsx (inline) and Leaderboard.jsx (full page).
  */
-export default function LeaderboardList({ currentTeamId, compact = false }) {
+export default function LeaderboardList({ currentTeamId, compact = false, showHeading = false }) {
   const [rows, setRows] = useState([])
   const [loading, setLoading] = useState(true)
   const [animatingIds, setAnimatingIds] = useState(new Set())
@@ -75,11 +75,7 @@ export default function LeaderboardList({ currentTeamId, compact = false }) {
   }
 
   if (rows.length === 0) {
-    return (
-      <div className="py-8 text-center text-white/50 text-sm" aria-live="polite">
-        No submissions yet — be the first!
-      </div>
-    )
+    return null
   }
 
   const medalColors = [
@@ -89,6 +85,12 @@ export default function LeaderboardList({ currentTeamId, compact = false }) {
   ]
 
   return (
+    <>
+    {showHeading && (
+      <h2 className="text-xs font-bold tracking-widest uppercase text-white/50 mb-3">
+        Leaderboard
+      </h2>
+    )}
     <ol aria-label="Leaderboard" className="flex flex-col gap-2">
       {rows.map((team, idx) => {
         const isCurrentTeam = team.team_id === currentTeamId
@@ -132,5 +134,6 @@ export default function LeaderboardList({ currentTeamId, compact = false }) {
         )
       })}
     </ol>
+    </>
   )
 }

@@ -80,9 +80,7 @@ export default function Leaderboard({ session }) {
       <main className="max-w-2xl mx-auto px-4 pb-12">
         {loading ? (
           <div className="mt-16 text-center text-white/40 text-sm" aria-live="polite">Loading scores…</div>
-        ) : rows.length === 0 ? (
-          <div className="mt-16 text-center text-white/40 text-sm" aria-live="polite">No submissions yet — be the first!</div>
-        ) : (
+        ) : rows.length === 0 ? null : (
           <ol className="mt-6 flex flex-col gap-2" aria-label="Leaderboard">
             {rows.map((team, idx) => (
               <li
