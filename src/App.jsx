@@ -13,6 +13,12 @@ export default function App() {
   const [settingsLoaded, setSettingsLoaded] = useState(false)
 
   useEffect(() => {
+    if (new URLSearchParams(window.location.search).has('leave')) {
+      localStorage.removeItem('vntrbirds_session')
+      window.location.replace('/')
+      return
+    }
+
     // Initial fetch of submissions_open setting
     supabase
       .from('app_settings')

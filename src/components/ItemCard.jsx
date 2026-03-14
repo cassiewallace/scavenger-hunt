@@ -46,14 +46,14 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
   const cardBase = [
     'rounded-xl border transition-all duration-300 overflow-hidden',
     isSponsor
-      ? 'bg-white border-brand-magenta/20 border-l-4 border-l-brand-magentaVibrant shadow-md'
+      ? 'bg-white/80 border-brand-magenta/20 border-l-4 border-l-brand-magentaVibrant shadow-md'
       : 'bg-brand-surface border-white/5',
     flash ? 'animate-green-flash' : '',
   ].join(' ')
 
   return (
     <div className={cardBase}>
-      <div className={`flex items-center gap-3 px-4 ${isSponsor ? 'py-4' : 'py-3'}`}>
+      <div className={`flex items-center gap-3 px-4 ${isSponsor ? 'py-6' : 'py-3'}`}>
         {/* Left slot: thumbnail if found, camera button if not */}
         {isFound && thumbUrl ? (
           <div className={`flex-shrink-0 w-14 h-14 rounded-lg overflow-hidden ${isSponsor ? 'bg-black/10' : 'bg-white/10'}`}>
@@ -100,7 +100,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
 
           {/* Sponsor logo — right of text lockup */}
           {isSponsor && logoSrc && !logoFailed && (
-            <img src={logoSrc} alt="" aria-hidden="true" onError={() => setLogoFailed(true)} className="flex-shrink-0 h-10 w-auto object-contain max-w-[80px] ml-3" />
+            <img src={logoSrc} alt="" aria-hidden="true" onError={() => setLogoFailed(true)} className="flex-shrink-0 h-14 w-auto object-contain max-w-[100px] ml-3 mr-4" />
           )}
 
           {/* Points badge + found checkmark */}
