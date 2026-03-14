@@ -101,7 +101,7 @@ export default function Register() {
           <img
             src="/logo.png"
             alt="Venture Out"
-            className="w-32 mx-auto mb-4 select-none"
+            className="w-full max-w-[500px] mx-auto mb-4 select-none"
             draggable={false}
           />
           <p className="text-white/80 text-base">Ready to hunt?</p>
