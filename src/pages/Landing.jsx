@@ -97,6 +97,13 @@ export default function Landing({ submissionsOpen, settingsLoaded }) {
         <LeaderboardList currentTeamId={session?.team_id} showHeading />
       </main>
 
+      <footer className="text-center text-[0.9em] text-white/40 px-4 py-6">
+        Built with ♥ in Summit County, CO by{' '}
+        <a href="https://cassiewallace.net" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white/70 transition-colors">Cassie Wallace</a>
+        {' '}and{' '}
+        <a href="https://vntrbirds.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-white/70 transition-colors">VNTRbirds</a>.
+      </footer>
+
     </div>
   )
 }

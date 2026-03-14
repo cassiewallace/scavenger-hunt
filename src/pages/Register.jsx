@@ -107,7 +107,7 @@ export default function Register() {
         </Link>
       </div>
 
-      <div className="flex-1 flex flex-col justify-start pt-6 px-6 pb-12 max-w-md mx-auto w-full">
+      <div className="flex-1 flex flex-col justify-start pt-6 px-6 pb-6 max-w-md mx-auto w-full">
         {/* Mode tabs */}
         <div className="flex rounded-xl bg-white/5 p-1 mb-6">
           {[
