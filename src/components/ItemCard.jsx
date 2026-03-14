@@ -46,7 +46,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
   const cardBase = [
     'rounded-xl border transition-all duration-300 overflow-hidden',
     isSponsor
-      ? 'bg-white/80 border-brand-magenta/20 border-l-4 border-l-brand-magentaVibrant shadow-md'
+      ? 'bg-white border-brand-magenta/20 border-l-4 border-l-brand-magentaVibrant shadow-md'
       : 'bg-brand-surface border-white/5',
     flash ? 'animate-green-flash' : '',
   ].join(' ')
