@@ -76,13 +76,13 @@ const items = [
 { id: "sponsor_rmu", label: "RMU — On the skin track", points: 50, item_type: "sponsor" },
 { id: "sponsor_backcountryready", label: "Backcountry Ready — First aid kit you built at the workshop", points: 50, item_type: "sponsor" },
 { id: "sponsor_bestday", label: "Best Day Brewing — At the trailhead", points: 50, item_type: "sponsor" },
-{ id: "sponsor_beacon", label: "Beacon Guidebooks — OnX map you built at the Mapping Workshop", points: 50, item_type: "sponsor" },
+{ id: "sponsor_beacon", label: "Beacon Guidebooks — Map you built at the Mapping Workshop", points: 50, item_type: "sponsor" },
 { id: "sponsor_salidamtn", label: "Salida Mountain Sports — Picking up demo gear", points: 50, item_type: "sponsor" },
 { id: "sponsor_coalition", label: "Coalition Snow — Splitboard or skis in action", points: 50, item_type: "sponsor" },
 { id: "sponsor_breckmassage", label: "Breck Mtn Massage — Treating yourself to a massage", points: 50, item_type: "sponsor" },
 { id: "sponsor_breckenridge", label: "Breckenridge Distillery — Mountain Shot Pouch on an adventure", points: 50, item_type: "sponsor" },
 { id: "sponsor_glitter", label: "Sex Plants Rock+Roll — DIY face mask or glitter creation from the workshop", points: 50, item_type: "sponsor" },
-{ id: "sponsor_titsdeep", label: "Tits Deep — Deep snow selfie", points: 50, item_type: "sponsor" },
+{ id: "sponsor_titsdeep", label: "Tits Deep — Pic or selfie in deep snow", points: 50, item_type: "sponsor" },
 { id: "sponsor_sunshine", label: "Sunshine Sauna — Post-tour recovery", points: 50, item_type: "sponsor" },
 ];
 
