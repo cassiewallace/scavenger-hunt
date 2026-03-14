@@ -53,7 +53,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
 
   return (
     <div className={cardBase}>
-      <div className="flex items-start gap-3 px-4 py-3">
+      <div className={`flex items-center gap-3 px-4 ${isSponsor ? 'py-4' : 'py-3'}`}>
         {/* Left slot: thumbnail if found, camera button if not */}
         {isFound && thumbUrl ? (
           <div className="flex-shrink-0 w-14 h-14 rounded-lg overflow-hidden bg-white/10">
@@ -86,48 +86,44 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
         ) : null}
 
         {/* Item info */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2">
-            <div className="flex-1">
-              {/* Line 1 (sponsor only): logo or sponsor name */}
-              {isSponsor && (
-                <div className="mb-1">
-                  {logoSrc && !logoFailed ? (
-                    logoLightBg ? (
-                      <div className="bg-white rounded px-2 py-0.5 inline-flex items-center">
-                        <img src={logoSrc} alt={sponsorName} onError={() => setLogoFailed(true)} className="h-5 w-auto object-contain max-w-[110px]" />
-                      </div>
-                    ) : (
-                      <img src={logoSrc} alt={sponsorName} onError={() => setLogoFailed(true)} className="h-6 w-auto object-contain max-w-[120px]" />
-                    )
-                  ) : (
-                    <p className="text-white/70 text-xs font-semibold uppercase tracking-wide">{sponsorName}</p>
-                  )}
-                </div>
-              )}
-              {/* Line 2 (or only line): item description */}
-              <p className="text-white font-semibold text-lg leading-snug">{isSponsor ? itemDesc : item.label}</p>
-              {alreadyFound && (
-                <p className="text-xs text-brand-magentaVibrant font-medium mt-0.5">Already submitted!</p>
-              )}
-            </div>
-            <div className="flex items-center gap-2 flex-shrink-0 mt-0.5">
-              {/* Points badge */}
-              <span className="bg-brand-teal/20 text-brand-teal text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap border border-brand-teal/30">
-                {item.points} pts
+        <div className="flex-1 min-w-0 flex items-center gap-3">
+          {/* Text lockup */}
+          <div className="flex-1 min-w-0">
+            {isSponsor && (
+              <p className="text-white/70 text-xs font-semibold uppercase tracking-wide mb-1">{sponsorName}</p>
+            )}
+            <p className="text-white font-semibold text-lg leading-snug">{isSponsor ? itemDesc : item.label}</p>
+            {alreadyFound && (
+              <p className="text-xs text-brand-magentaVibrant font-medium mt-0.5">Already submitted!</p>
+            )}
+          </div>
+
+          {/* Sponsor logo — right of text lockup */}
+          {isSponsor && logoSrc && !logoFailed && (
+            logoLightBg ? (
+              <div className="flex-shrink-0 bg-white rounded px-2 py-1 flex items-center">
+                <img src={logoSrc} alt="" aria-hidden="true" onError={() => setLogoFailed(true)} className="h-10 w-auto object-contain max-w-[80px]" />
+              </div>
+            ) : (
+              <img src={logoSrc} alt="" aria-hidden="true" onError={() => setLogoFailed(true)} className="flex-shrink-0 h-10 w-auto object-contain max-w-[80px]" />
+            )
+          )}
+
+          {/* Points badge + found checkmark */}
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <span className="bg-brand-teal/20 text-brand-teal text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap border border-brand-teal/30">
+              {item.points} pts
+            </span>
+            {isFound && (
+              <span
+                className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-brand-success/20 rounded-full"
+                aria-label="Found"
+              >
+                <svg className="w-4 h-4 text-brand-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
               </span>
-              {/* Found checkmark */}
-              {isFound && (
-                <span
-                  className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-brand-success/20 rounded-full"
-                  aria-label="Found"
-                >
-                  <svg className="w-4 h-4 text-brand-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                  </svg>
-                </span>
-              )}
-            </div>
+            )}
           </div>
         </div>
       </div>
