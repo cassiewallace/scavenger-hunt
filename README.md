@@ -2,7 +2,7 @@
 
 Mobile-first scavenger hunt submission app for the **[VNTRbirds Venture Out](https://www.vntrbirds.com) Femme Backcountry Festival** · Salida, CO.
 
-Built with **Vite + React + Tailwind CSS**, **Supabase** backend, and **Firebase Hosting** with GitHub Actions CI/CD.
+Built with **Vite + React + Tailwind CSS**, **Supabase** backend, **Firebase Hosting** with GitHub Actions CI/CD, and **[Phosphor Icons](https://phosphoricons.com)**.
 
 ---
 
