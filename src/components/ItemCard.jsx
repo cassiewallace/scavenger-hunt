@@ -112,7 +112,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
           {/* Points badge + found checkmark */}
           <div className="flex items-center gap-2 flex-shrink-0">
             <span className="bg-brand-teal/20 text-brand-teal text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap border border-brand-teal/30">
-              {item.points} pts
+              {item.points} feathers
             </span>
             {isFound && (
               <span

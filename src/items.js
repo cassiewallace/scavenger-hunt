@@ -28,7 +28,7 @@ const items = [
 { id: "smores_stick", label: "A great stick to cook s'mores during our bonfire Friday!", points: 20, item_type: "standard" },
 { id: "view_top", label: "View from top of skin track before dropping in", points: 10, item_type: "standard" },
 { id: "huge_smiles", label: "Huge smiles from an awesome tour or descent", points: 5, item_type: "standard" },
-{ id: "hype_video", label: "Video of why you're hyped to be at Venture Out! (+25 pts if you tag us on IG)", points: 75, item_type: "standard" },
+{ id: "hype_video", label: "Video of why you're hyped to be at Venture Out! (+25 feathers if you tag us on IG)", points: 75, item_type: "standard" },
 { id: "trail_markers", label: "Trail markers", points: 15, item_type: "standard" },
 { id: "pallas_splitboard", label: "Pallas splitboard getting some turns", points: 10, item_type: "standard" },
 { id: "fallen_trees", label: "Fallen trees", points: 5, item_type: "standard" },

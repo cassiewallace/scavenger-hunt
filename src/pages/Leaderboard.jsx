@@ -112,7 +112,7 @@ export default function Leaderboard({ session }) {
                 </div>
                 <div className="font-bold text-brand-teal text-lg tabular-nums flex-shrink-0">
                   {team.total_points}
-                  <span className="text-xs font-normal text-white/40 ml-0.5">pts</span>
+                  <span className="text-xs font-normal text-white/40 ml-0.5">feathers</span>
                 </div>
               </li>
             ))}

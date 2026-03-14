@@ -97,7 +97,7 @@ export default function Hunt({ submissionsOpen }) {
           <div className="mt-1 flex items-center gap-2 flex-wrap">
             <span className="text-white/80 text-sm font-medium">{session?.team_name}</span>
             <span className="text-white/50" aria-hidden="true">·</span>
-            <span className="text-brand-teal font-bold text-sm">{totalPoints} pts</span>
+            <span className="text-brand-teal font-bold text-sm">{totalPoints} feathers</span>
             <span className="text-white/50" aria-hidden="true">·</span>
             <span className="text-white/80 text-sm">
               {foundCount} of {totalCount} found
