@@ -45,13 +45,11 @@ export default function App() {
     return () => supabase.removeChannel(channel)
   }, [])
 
-  const session = JSON.parse(localStorage.getItem('vntrbirds_session') || 'null')
-
   return (
     <BrowserRouter>
       <Routes>
         {/* Landing is always the root — it's the main hub with leaderboard */}
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Landing submissionsOpen={submissionsOpen} settingsLoaded={settingsLoaded} />} />
 
         <Route
           path="/register"
@@ -63,11 +61,7 @@ export default function App() {
         />
         <Route
           path="/hunt"
-          element={
-            session
-              ? <Hunt submissionsOpen={submissionsOpen} />
-              : <Navigate to="/" replace />
-          }
+          element={<Hunt submissionsOpen={submissionsOpen} />}
         />
         <Route path="/admin" element={<Admin />} />
       </Routes>

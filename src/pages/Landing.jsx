@@ -15,7 +15,7 @@ import LeaderboardList from '../components/LeaderboardList'
  *   - Button contrast ratios: Submit 5.3:1 (AA), Add Team 9.4:1 (AAA)
  *   - Live region on leaderboard section
  */
-export default function Landing() {
+export default function Landing({ submissionsOpen, settingsLoaded }) {
   const navigate = useNavigate()
   const location = useLocation()
   const [closedBanner, setClosedBanner] = useState(false)
@@ -66,31 +66,32 @@ export default function Landing() {
           </div>
         )}
 
-        {/* CTA buttons */}
-        <div className="flex flex-col gap-3 mb-8">
-          {session ? (
-            <button
-              onClick={handleSubmitFind}
-              className="min-tap w-full rounded-full border-2 border-white text-white text-base font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-white/10 active:scale-95 transition-transform"
-            >
-              <svg className="w-5 h-5 text-brand-teal flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              Submit a find
-            </button>
-          ) : (
-            <button
-              onClick={handleAddTeam}
-              className="min-tap w-full rounded-full border-2 border-white text-white text-base font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-white/10 active:scale-95 transition-transform"
-            >
-              <svg className="w-5 h-5 text-brand-teal flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 4h16M20 4v16M4 20L20 4" />
-              </svg>
-              Get started
-            </button>
-          )}
-        </div>
+        {/* CTA buttons — hidden once submissions are closed */}
+        {(!settingsLoaded || submissionsOpen) && (
+          <div className="flex flex-col gap-3 mb-8">
+            {session ? (
+              <button
+                onClick={handleSubmitFind}
+                className="min-tap w-full rounded-full border-2 border-white text-white text-base font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-white/10 active:scale-95 transition-transform"
+              >
+                <svg className="w-5 h-5 text-brand-teal flex-shrink-0" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+                  <path d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z" />
+                </svg>
+                Submit a find
+              </button>
+            ) : (
+              <button
+                onClick={handleAddTeam}
+                className="min-tap w-full rounded-full border-2 border-white text-white text-base font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-white/10 active:scale-95 transition-transform"
+              >
+                <svg className="w-5 h-5 text-brand-teal flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 4h16M20 4v16M4 20L20 4" />
+                </svg>
+                Get started
+              </button>
+            )}
+          </div>
+        )}
 
         {/* Leaderboard — hidden when no submissions */}
         <LeaderboardList currentTeamId={session?.team_id} showHeading />

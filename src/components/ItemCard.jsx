@@ -78,9 +78,8 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
             className="flex-shrink-0 w-14 h-14 rounded-lg bg-brand-primary flex items-center justify-center active:scale-95 transition-transform"
             aria-label="Submit find"
           >
-            <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+            <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+              <path d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z" />
             </svg>
           </button>
         ) : null}
@@ -100,13 +99,13 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
 
           {/* Sponsor logo — right of text lockup */}
           {isSponsor && logoSrc && !logoFailed && (
-            <img src={logoSrc} alt="" aria-hidden="true" onError={() => setLogoFailed(true)} className="flex-shrink-0 h-14 w-auto object-contain max-w-[100px] ml-3 mr-4" />
+            <img src={logoSrc} alt="" aria-hidden="true" onError={() => setLogoFailed(true)} className="flex-shrink-0 h-16 w-auto object-contain max-w-[120px] ml-3 mr-4" />
           )}
 
           {/* Points badge + found checkmark */}
           <div className="flex items-center gap-2 flex-shrink-0">
-            <span className="bg-brand-teal/20 text-brand-teal text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap border border-brand-teal/30">
-              {item.points} feathers <FeatherIcon className="w-3 h-3 inline-block" />
+            <span className="bg-brand-teal/20 text-brand-teal text-sm font-bold px-3 py-1 rounded-full whitespace-nowrap border border-brand-teal/30">
+              {item.points} <FeatherIcon className="w-3.5 h-3.5 inline-block" />
             </span>
             {isFound && (
               <span
@@ -133,6 +132,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
             onClose={() => setUploadOpen(false)}
             uploading={uploading}
             setUploading={setUploading}
+            isSponsor={isSponsor}
           />
         </div>
       )}
