@@ -2,28 +2,79 @@
 
 Mobile-first scavenger hunt submission app for the **[VNTRbirds Venture Out](https://www.vntrbirds.com) Femme Backcountry Festival** · Salida, CO.
 
-Built with Vite + React + Tailwind CSS · Supabase backend · Firebase Hosting.
+Built with **Vite + React + Tailwind CSS**, **Supabase** backend, **Firebase Hosting** with GitHub Actions CI/CD, and **[Phosphor Icons](https://phosphoricons.com)**.
 
 ---
 
-## App Overview
+## What This Is
+
+Teams of backcountry skiers and splitboarders compete to photograph items on a scavenger hunt list during the festival. This app handles:
+
+- **Team registration** — create or join a team by name; session persists in localStorage so any device can resume
+- **Hunt list** — browse all items, search by keyword, filter to incomplete items; auto-sorted (sponsor items first, then by point value descending)
+- **Photo/video submission** — tap the camera button on any item to upload media; duplicate submissions are prevented at the database level
+- **Live leaderboard** — real-time Supabase Realtime subscription; updates on every submission across all devices
+- **Admin panel** — passphrase-protected; toggle submissions open/closed; download all submissions as a ZIP or individual files per item
+
+---
+
+## Routes
 
 | Route | Description |
 |-------|-------------|
-| `/` | Home hub — brand logo, Submit a Find, Add a Team, live leaderboard |
-| `/register` | Team registration or session resume on a new device |
-| `/hunt` | Team hunt dashboard — browse and submit items |
-| `/leaderboard` | Full-page public live leaderboard |
-| `/admin` | Admin view (passphrase-protected) |
+| `/` | Landing — logo, CTA button, live leaderboard |
+| `/register` | Create a new team or join an existing one |
+| `/hunt` | Team hunt dashboard — browse, search, and submit items |
+| `/admin` | Admin panel (passphrase-protected) |
 
-Teams register by entering a name. The same team name on any device resumes the session. Two teammates can join the same team by using the same name.
+The `/register` page has two tabs: **Create a team** (enters a new team name) and **Join a team** (shows teams with fewer than 2 members). Once registered, a session is stored in `localStorage` and the user is sent directly to `/hunt`.
 
 ---
 
-## Brand Image Setup
+## Item Types
 
-The app references `/logo.png` from the `public/` directory (`public/logo.png`).
-Recommended: PNG, at least 600×600 px.
+Items are defined in `src/items.js` — the single source of truth. Edit this file to change labels, points, or add/remove items before the event.
+
+```js
+{ id: "unique_id", label: "Display label", points: 10, item_type: "standard" }
+// item_type: "standard" | "sponsor"
+```
+
+- **`standard`** — regular hunt items, sorted by point value on the hunt list
+- **`sponsor`** — sponsor spotlight items, shown first with a distinct white card style, magenta left border, and the sponsor's logo
+
+Sponsor logos live in `public/sponsors/<filename>.png` and are mapped in `src/constants/sponsorLogos.js`:
+
+```js
+sponsor_karitraa: { file: 'kari-traa.png', lightBg: true }
+// lightBg: true  — logo renders directly on the white sponsor card
+// lightBg: false — logo gets a dark pill background (for white/light logos)
+```
+
+---
+
+## UI Notes
+
+- **Hunt header** — team name on the left, feather count on the right; back button returns to the leaderboard
+- **Item cards** — left slot contains the camera button (or submission thumbnail) with the points badge below it; badge turns green with a checkmark once submitted
+- **Sponsor cards** — white background, magenta left border, sponsor logo above the item description
+- **UploadFlow** — expands inline below the item; accepts photo or video up to 50 MB; shows upload progress; sponsor card variant uses dark-on-light colors for contrast
+- **CTA buttons** — white background, black border, black text throughout
+
+---
+
+## Brand Colors
+
+All tokens are defined in `src/constants/brand.js`. Tailwind picks them up via `tailwind.config.js`.
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `bg` | `#0f0f0f` | Page background |
+| `surface` | `#1c1c1c` | Cards, headers |
+| `teal` | `#26c4bc` | Scores, badges, focus rings |
+| `magenta` | `#b030ba` | Sponsor card accents |
+| `success` | green | Found item badge |
+| `error` | red | Validation messages |
 
 ---
 
@@ -33,27 +84,27 @@ Recommended: PNG, at least 600×600 px.
 # 1. Install dependencies
 npm install
 
-# 2. Copy env and fill in values
+# 2. Copy env template and fill in values
 cp .env.example .env.local
 
-# 3. Start dev server (http://localhost:5173)
+# 3. Start dev server
 npm run dev
+# → http://localhost:5173
 ```
 
 ---
 
-## Step 1 — Supabase Setup
+## Supabase Setup
 
-### 1.1 Create a Supabase project
+### 1. Create a project
 
 1. Go to [supabase.com](https://supabase.com) → **New project**
-2. Choose a region close to your event location (e.g., US West)
-3. Note your **Project URL** and **anon/public API key** from:
-   **Settings → API → Project URL & anon key**
+2. Choose a region close to your event
+3. Copy your **Project URL** and **anon key** from **Settings → API**
 
-### 1.2 Create tables
+### 2. Create tables
 
-Open the **SQL Editor** in Supabase and run:
+Run in the **SQL Editor**:
 
 ```sql
 -- Teams
@@ -87,33 +138,27 @@ create table submissions (
 );
 ```
 
-### 1.3 Create Storage bucket
+### 3. Storage bucket
 
-1. Dashboard → **Storage** → **New bucket**
-2. Name: `hunt-submissions`
-3. Toggle **Public bucket** on ✓ → **Create bucket**
-4. Go to **Storage → Policies → hunt-submissions** and run:
+1. Dashboard → **Storage → New bucket**
+2. Name: `hunt-submissions`, toggle **Public** on
+3. Add storage policies:
 
 ```sql
--- Allow anyone to upload
 create policy "Public inserts"
 on storage.objects for insert
 with check (bucket_id = 'hunt-submissions');
 
--- Allow public reads (thumbnails, admin previews)
 create policy "Public reads"
 on storage.objects for select
 using (bucket_id = 'hunt-submissions');
 ```
 
-### 1.4 Enable Realtime
+### 4. Enable Realtime
 
-1. Dashboard → **Database → Replication**
-2. Enable Realtime for both `submissions` ✓ and `app_settings` ✓
+Dashboard → **Database → Replication** → enable for `submissions` and `app_settings`.
 
-### 1.5 Set environment variables
-
-Fill in `.env.local` (copy from `.env.example`):
+### 5. Environment variables
 
 ```
 VITE_SUPABASE_URL=https://your-project-id.supabase.co
@@ -123,96 +168,68 @@ VITE_ADMIN_PASSPHRASE=choose-something-secure
 
 ---
 
-## Step 2 — Firebase Hosting Setup
+## Firebase Hosting Setup
 
-### 2.1 Create a Firebase project
+### 1. Create a Firebase project
 
-1. Go to [console.firebase.google.com](https://console.firebase.google.com)
-2. Click **Add project** → name it (e.g., `vntrbirds-hunt`)
-3. Disable Google Analytics (not needed) → **Create project**
-4. Note your **Project ID** (shown on the project overview page)
+1. [console.firebase.google.com](https://console.firebase.google.com) → **Add project**
+2. Disable Google Analytics → **Create project**
+3. Note your **Project ID**
 
-### 2.2 Update `.firebaserc`
-
-Replace `vntrbirds-scavenger-hunt` with your actual Firebase project ID:
+### 2. Update `.firebaserc`
 
 ```json
 {
   "projects": {
-    "default": "your-actual-firebase-project-id"
+    "default": "your-firebase-project-id"
   }
 }
 ```
 
-### 2.3 Deploy
+### 3. GitHub Actions CI/CD
+
+The repo deploys automatically on every push to `main` via `.github/workflows/`. Add these secrets to your GitHub repo (**Settings → Secrets → Actions**):
+
+| Secret | Value |
+|--------|-------|
+| `VITE_SUPABASE_URL` | Your Supabase project URL |
+| `VITE_SUPABASE_ANON_KEY` | Your Supabase anon key |
+| `VITE_ADMIN_PASSPHRASE` | Admin panel passphrase |
+| `FIREBASE_SERVICE_ACCOUNT` | Firebase service account JSON |
+
+### 4. Manual deploy
 
 ```bash
-# Install Firebase CLI (once)
 npm install -g firebase-tools
-
-# Login
 firebase login
-
-# Build the app
 npm run build
-
-# Deploy to Firebase Hosting
 firebase deploy
 ```
 
-Your app will be live at: **`https://your-project-id.web.app`**
+Live at: `https://your-project-id.web.app`
 
-### 2.4 Optional: Custom domain
+### 5. Custom domain (optional)
 
-1. Firebase console → **Hosting → Add custom domain**
-2. Enter your domain (e.g., `hunt.vntrbirds.com`)
-3. Follow the DNS verification steps — SSL is auto-provisioned within ~24 hours
+Firebase console → **Hosting → Add custom domain** → follow DNS steps. SSL is auto-provisioned.
 
 ---
 
-## Step 3 — QR Code
+## Assets
 
-1. Go to [qr-code-generator.com](https://www.qr-code-generator.com) or [goqr.me](https://goqr.me)
-2. Paste your Firebase URL: `https://your-project-id.web.app`
-3. Download as PNG or SVG (at least 500×500 px for print)
-4. Print and post at the Scout Hut / event HQ
-
----
-
-## Brand Colors
-
-All colors are defined in `src/constants/brand.js` with documented WCAG contrast ratios.
-To retheme, edit that file only — `tailwind.config.js` imports from it automatically.
-
-| Token | Hex | Usage | Contrast on bg |
-|-------|-----|-------|----------------|
-| `bg` | `#0f0f0f` | Page background | — |
-| `surface` | `#1c1c1c` | Cards, headers | — |
-| `magenta` | `#b030ba` | Primary CTA buttons (white text) | 5.3:1 ✓ AA |
-| `teal` | `#26c4bc` | Secondary CTA, scores (dark text) | 9.4:1 ✓ AAA |
-| `blue` | `#4b8fd4` | Links, admin accents | 5.8:1 ✓ AA |
-| `lavender` | `#9b85d0` | Decorative | 4.9:1 ✓ AA |
+| File | Description |
+|------|-------------|
+| `public/logo.png` | Event logo — displayed on Landing and Register pages |
+| `public/favicon.png` | Browser tab icon |
+| `public/sponsors/*.png` | Sponsor logos — filename must match `src/constants/sponsorLogos.js` |
 
 ---
 
-## Updating Hunt Items
+## Pre-Event Checklist
 
-Edit `src/items.js` — the single source of truth for all hunt items:
-
-```js
-{ id: "unique_id", label: "Display label", points: 10, item_type: "standard" }
-// item_type: "standard" | "sponsor"
-```
-
----
-
-## TODO Checklist
-
-- [x] Save brand logo to `public/logo.png`
-- [x] Create Supabase project → run SQL → enable Realtime
-- [x] Fill in `.env.local` with Supabase URL, anon key, admin passphrase
-- [x] Create Firebase project → update `.firebaserc` project ID
-- [x] Run `npm run build && firebase deploy`
-- [ ] Test upload flow on iOS and Android before the event
-- [x] Confirm sponsor item point values (30 pts each)
-- [x] Review `src/items.js` for any last-minute changes
+- Update `src/items.js` with final item list, labels, and point values
+- Add sponsor logos to `public/sponsors/` and verify filenames in `src/constants/sponsorLogos.js`
+- Set GitHub Actions secrets (Supabase URL, anon key, admin passphrase)
+- Push to `main` to trigger a production build
+- Confirm submissions toggle is **Open** in `/admin` before the event starts
+- Test upload flow on iOS and Android
+- Print QR code pointing to your Firebase URL and post at event HQ
