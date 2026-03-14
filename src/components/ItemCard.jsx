@@ -89,18 +89,24 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
           {/* Text lockup */}
           <div className="flex-1 min-w-0">
             {isSponsor && (
-              <p className="text-black/50 text-xs font-semibold uppercase tracking-wide mb-1">{sponsorName}</p>
+              logoSrc && !logoFailed ? (
+                <div className={`mb-2 inline-flex items-center justify-center ${!logoLightBg ? 'bg-gray-800 rounded-lg px-2 py-1' : ''}`}>
+                  <img
+                    src={logoSrc}
+                    alt={sponsorName}
+                    onError={() => setLogoFailed(true)}
+                    className="h-8 w-auto object-contain max-w-[140px]"
+                  />
+                </div>
+              ) : (
+                <p className="text-black/50 text-xs font-semibold uppercase tracking-wide mb-1">{sponsorName}</p>
+              )
             )}
             <p className={`font-semibold text-lg leading-snug ${isSponsor ? 'text-gray-900' : 'text-white'}`}>{isSponsor ? itemDesc : item.label}</p>
             {alreadyFound && (
               <p className="text-xs text-brand-magentaVibrant font-medium mt-0.5">Already submitted!</p>
             )}
           </div>
-
-          {/* Sponsor logo — right of text lockup */}
-          {isSponsor && logoSrc && !logoFailed && (
-            <img src={logoSrc} alt="" aria-hidden="true" onError={() => setLogoFailed(true)} className="flex-shrink-0 h-16 w-auto object-contain max-w-[120px] ml-3 mr-4" />
-          )}
 
           {/* Points badge + found checkmark */}
           <div className="flex items-center gap-2 flex-shrink-0">

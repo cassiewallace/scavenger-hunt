@@ -76,9 +76,9 @@ export default function Hunt({ submissionsOpen }) {
     <div className="min-h-screen bg-brand-bg">
       {/* Header */}
       <header className="sticky top-0 z-10 bg-brand-surface border-b border-white/10 text-white px-4 py-3 shadow-lg">
-        <div className="max-w-2xl mx-auto">
-          <p className="text-white font-bold text-lg leading-tight">{session?.team_name}</p>
-          <p className="text-brand-teal font-semibold text-sm flex items-center gap-1 mt-0.5">
+        <div className="max-w-2xl mx-auto flex items-center justify-between gap-3">
+          <p className="text-white font-bold text-lg leading-tight truncate">{session?.team_name}</p>
+          <p className="text-brand-teal font-semibold text-sm flex items-center gap-1 flex-shrink-0">
             {totalPoints} of {totalPossiblePoints} <FeatherIcon /> possible
           </p>
         </div>
@@ -106,13 +106,16 @@ export default function Hunt({ submissionsOpen }) {
           />
           <button
             onClick={() => setHideCompleted((v) => !v)}
-            className={`flex-shrink-0 px-3 py-3 rounded-xl border text-xs font-semibold transition-colors whitespace-nowrap ${
+            className={`flex-shrink-0 px-3 py-3 rounded-xl border text-xs font-semibold transition-colors whitespace-nowrap flex items-center gap-1.5 ${
               hideCompleted
                 ? 'border-brand-teal bg-brand-teal/10 text-brand-teal'
                 : 'border-white/10 text-white/60 hover:text-white/80'
             }`}
             aria-pressed={hideCompleted}
           >
+            <svg className="w-3.5 h-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+              <path d="M200,136a8,8,0,0,1-8,8H64a8,8,0,0,1,0-16H192A8,8,0,0,1,200,136Zm32-56H24a8,8,0,0,0,0,16H232a8,8,0,0,0,0-16Zm-80,96H104a8,8,0,0,0,0,16h48a8,8,0,0,0,0-16Z" />
+            </svg>
             Not done
           </button>
         </div>
