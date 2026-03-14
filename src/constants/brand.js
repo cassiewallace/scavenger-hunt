@@ -14,7 +14,7 @@
 export const COLORS = {
   // ── Backgrounds ──────────────────────────────────────────────────────────
   /** Primary dark background — matches logo image gray */
-  bg: '#1a1a1a',
+  bg: '#191919',
   /** Elevated card / surface background */
   surface: '#1c1c1c',
   /** Hovered or active surface */

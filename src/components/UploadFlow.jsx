@@ -188,22 +188,26 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
         >
           Cancel
         </button>
-        {/* bg brand-primary → white text 5.3:1 (WCAG AA) */}
         <button
           onClick={handleUpload}
           disabled={!selectedFile || uploading}
-          className="flex-1 min-tap bg-brand-primary text-white rounded-lg text-sm font-medium disabled:opacity-40 active:scale-95 transition-transform"
+          className="flex-1 min-tap rounded-full border-2 border-white text-white text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-white/10 disabled:opacity-40 active:scale-95 transition-transform"
         >
           {uploading ? (
-            <span className="flex items-center gap-1.5">
+            <>
               <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
               </svg>
               Uploading…
-            </span>
+            </>
           ) : (
-            'Upload'
+            <>
+              <svg className="w-4 h-4 text-brand-teal flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 4h16M20 4v16M4 20L20 4" />
+              </svg>
+              Submit a Find
+            </>
           )}
         </button>
       </div>
