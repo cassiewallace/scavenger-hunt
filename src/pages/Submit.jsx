@@ -73,7 +73,7 @@ export default function Submit() {
 
       <main className="max-w-2xl mx-auto w-full px-4 pb-12 flex flex-col flex-1">
         {/* Search filter */}
-        <div className="sticky top-[57px] z-10 bg-brand-bg pt-4 pb-3">
+        <div className="sticky top-[57px] z-20 bg-brand-bg pt-4 pb-3">
           <input
             type="search"
             placeholder="Filter items…"
