@@ -3,7 +3,7 @@
 // lightBg: false → logo shown directly on dark card surface (use for white/light transparent logos)
 
 const sponsorLogos = {
-  sponsor_karitraa:     { file: 'kari-traa.png',                 lightBg: true  },
+  sponsor_karitraa:     { file: 'kari-traa.jpeg',                lightBg: true  },
   sponsor_skilikeagirl: { file: 'ski-like-a-girl.png',           lightBg: true  },
   sponsor_rmu:          { file: 'rmu.png',                       lightBg: true  },
   sponsor_backcountryready: { file: 'backcountry-ready.png',    lightBg: true  },
