@@ -3,7 +3,30 @@ import { supabase } from '../lib/supabase'
 
 const MAX_FILE_MB = 50
 
-export default function UploadFlow({ item, session, onFound, onAlreadyFound, onClose, uploading, setUploading }) {
+export default function UploadFlow({ item, session, onFound, onAlreadyFound, onClose, uploading, setUploading, isSponsor }) {
+  const c = isSponsor ? {
+    filePicker: 'border-black/20 text-gray-500 hover:border-brand-teal hover:text-brand-teal',
+    fileSelected: 'text-gray-700 bg-black/5 border border-black/10',
+    fileIcon: 'text-gray-400',
+    fileName: 'text-gray-900',
+    removeBtn: 'text-gray-400',
+    label: 'text-gray-600',
+    input: 'border-black/10 focus:border-brand-teal text-gray-900 bg-black/5 placeholder:text-gray-400',
+    progress: 'bg-black/10',
+    cancelBtn: 'border border-black/10 text-gray-600 rounded-lg text-sm font-medium disabled:opacity-50',
+    submitBtn: 'border-2 border-gray-900 text-gray-900 hover:bg-black/5',
+  } : {
+    filePicker: 'border-white/20 text-white/60 hover:border-brand-teal hover:text-brand-teal',
+    fileSelected: 'text-white/70 bg-white/5 border border-white/10',
+    fileIcon: 'text-white/40',
+    fileName: 'text-white',
+    removeBtn: 'text-white/40',
+    label: 'text-white/70',
+    input: 'border-white/10 focus:border-brand-teal text-white bg-white/5 placeholder:text-white/50',
+    progress: 'bg-white/10',
+    cancelBtn: 'border border-white/10 text-white/70 rounded-lg text-sm font-medium disabled:opacity-50',
+    submitBtn: 'border-2 border-white text-white hover:bg-white/10',
+  }
   const [selectedFile, setSelectedFile] = useState(null)
   const [igUrl, setIgUrl] = useState('')
   const [progress, setProgress] = useState(0)
@@ -104,14 +127,14 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
       />
 
       {selectedFile ? (
-        <div className="flex items-center gap-2 text-sm text-white/70 bg-white/5 border border-white/10 rounded-lg px-3 py-2">
-          <svg className="w-4 h-4 text-white/40 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <div className={`flex items-center gap-2 text-sm rounded-lg px-3 py-2 ${c.fileSelected}`}>
+          <svg className={`w-4 h-4 flex-shrink-0 ${c.fileIcon}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
           </svg>
-          <span className="truncate flex-1 text-white">{selectedFile.name}</span>
+          <span className={`truncate flex-1 ${c.fileName}`}>{selectedFile.name}</span>
           <button
             onClick={() => { setSelectedFile(null); setError(''); setSizeWarning(false) }}
-            className="text-white/40 flex-shrink-0"
+            className={`flex-shrink-0 ${c.removeBtn}`}
             aria-label="Remove selected file"
           >
             ✕
@@ -120,7 +143,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
       ) : (
         <label
           htmlFor={`file-${item.id}`}
-          className="min-tap flex items-center justify-center gap-2 border-2 border-dashed border-white/20 rounded-lg text-white/60 text-sm font-medium cursor-pointer hover:border-brand-teal hover:text-brand-teal transition-colors"
+          className={`min-tap flex items-center justify-center gap-2 border-2 border-dashed rounded-lg text-sm font-medium cursor-pointer transition-colors ${c.filePicker}`}
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -138,7 +161,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
       {/* IG URL field for hype_video */}
       {isHypeVideo && (
         <div>
-          <label className="block text-xs font-semibold text-white/70 mb-1">
+          <label className={`block text-xs font-semibold mb-1 ${c.label}`}>
             Tag us on IG for +25 feathers! Paste your post link here (honor system)
           </label>
           <input
@@ -146,7 +169,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
             value={igUrl}
             onChange={(e) => setIgUrl(e.target.value)}
             placeholder="https://www.instagram.com/p/..."
-            className="w-full px-3 py-2 rounded-lg border border-white/10 focus:border-brand-teal focus:outline-none text-sm text-white bg-white/5 placeholder:text-white/50"
+            className={`w-full px-3 py-2 rounded-lg border focus:outline-none text-sm ${c.input}`}
           />
         </div>
       )}
@@ -154,7 +177,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
       {/* Upload progress */}
       {uploading && progress > 0 && (
         <div
-          className="w-full bg-white/10 rounded-full h-2 overflow-hidden"
+          className={`w-full rounded-full h-2 overflow-hidden ${c.progress}`}
           role="progressbar"
           aria-valuenow={progress}
           aria-valuemin={0}
@@ -184,14 +207,14 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
         <button
           onClick={() => { onClose(); setSelectedFile(null); setError(''); setProgress(0) }}
           disabled={uploading}
-          className="flex-1 min-tap border border-white/10 text-white/70 rounded-lg text-sm font-medium disabled:opacity-50"
+          className={`flex-1 min-tap ${c.cancelBtn}`}
         >
           Cancel
         </button>
         <button
           onClick={handleUpload}
           disabled={!selectedFile || uploading}
-          className="flex-1 min-tap rounded-full border-2 border-white text-white text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-white/10 disabled:opacity-40 active:scale-95 transition-transform"
+          className={`flex-1 min-tap rounded-full text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 disabled:opacity-40 active:scale-95 transition-transform ${c.submitBtn}`}
         >
           {uploading ? (
             <>

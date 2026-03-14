@@ -121,7 +121,7 @@ export default function LeaderboardList({ currentTeamId, compact = false, showHe
             {/* Score */}
             <div className="font-bold text-brand-teal text-lg tabular-nums flex-shrink-0">
               {team.total_points}
-              <span className="text-xs font-normal text-white/50 ml-0.5 inline-flex items-center gap-0.5">feathers <FeatherIcon className="w-3 h-3" /></span>
+              <FeatherIcon className="w-5 h-5 ml-1 inline-block text-brand-teal" />
             </div>
           </li>
         )
