@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 
 export default function Register() {
@@ -97,15 +97,17 @@ export default function Register() {
   return (
     <div className="min-h-screen bg-brand-bg flex flex-col">
       <div className="flex flex-col items-center pt-6 pb-4 px-3">
-        <img
-          src="/logo.png"
-          alt="Venture Out"
-          className="w-full max-w-[500px] select-none"
-          draggable={false}
-        />
+        <Link to="/" aria-label="Home">
+          <img
+            src="/logo.png"
+            alt="Venture Out"
+            className="w-full max-w-[300px] select-none"
+            draggable={false}
+          />
+        </Link>
       </div>
 
-      <div className="flex-1 flex flex-col justify-center px-6 pb-12 max-w-md mx-auto w-full">
+      <div className="flex-1 flex flex-col justify-start pt-6 px-6 pb-12 max-w-md mx-auto w-full">
         {/* Mode tabs */}
         <div className="flex rounded-xl bg-white/5 p-1 mb-6">
           {[
@@ -181,7 +183,7 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading || !canSubmit}
-            className="min-tap w-full rounded-full border-2 border-white text-white text-base font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-white/10 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-transform mt-2"
+            className="min-tap w-full rounded-full bg-white border-2 border-black text-black text-base font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed active:scale-95 transition-transform mt-2"
           >
             {loading ? (
               <>

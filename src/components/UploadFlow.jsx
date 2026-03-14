@@ -23,7 +23,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
     label: 'text-white/70',
     input: 'border-white/10 focus:border-brand-teal text-white bg-white/5 placeholder:text-white/50',
     progress: 'bg-white/10',
-    submitBtn: 'border-2 border-white text-white hover:bg-white/10',
+    submitBtn: 'bg-white border-2 border-black text-black hover:bg-gray-100',
   }
   const [selectedFile, setSelectedFile] = useState(null)
   const [igUrl, setIgUrl] = useState('')
@@ -216,7 +216,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
           </>
         ) : (
           <>
-            <svg className="w-4 h-4 text-brand-teal flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+            <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 4h16M20 4v16M4 20L20 4" />
             </svg>
             Submit

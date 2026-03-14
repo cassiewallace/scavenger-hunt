@@ -10,7 +10,7 @@ const sponsorLogos = {
   sponsor_bestday:      { file: 'best-day.png',                  lightBg: true  },
   sponsor_beacon:       { file: 'beacon.png',                    lightBg: true  },
   sponsor_salidamtn:    { file: 'salida-mountain-sports.png',    lightBg: false },
-  sponsor_coalition:    { file: 'coalition-snow.png',            lightBg: false },
+  sponsor_coalition:    { file: 'coalition-snow.png',            lightBg: true  },
   sponsor_breckmassage: { file: 'breck-mountain-massage.png',    lightBg: true  },
   sponsor_breckenridge: { file: 'breckenridge.png',              lightBg: true  },
   sponsor_glitter:      { file: 'sex-plants-rock-and-roll.png',  lightBg: true  },
