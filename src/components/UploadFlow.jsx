@@ -146,7 +146,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
             value={igUrl}
             onChange={(e) => setIgUrl(e.target.value)}
             placeholder="https://www.instagram.com/p/..."
-            className="w-full px-3 py-2 rounded-lg border border-white/10 focus:border-brand-teal focus:outline-none text-sm text-white bg-white/5 placeholder:text-white/30"
+            className="w-full px-3 py-2 rounded-lg border border-white/10 focus:border-brand-teal focus:outline-none text-sm text-white bg-white/5 placeholder:text-white/50"
           />
         </div>
       )}

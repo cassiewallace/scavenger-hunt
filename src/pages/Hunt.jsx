@@ -88,7 +88,7 @@ export default function Hunt({ submissionsOpen }) {
               </Link>
               <button
                 onClick={handleLogout}
-                className="text-xs text-white/50 underline underline-offset-2"
+                className="text-xs text-white/70 underline underline-offset-2"
               >
                 Log out
               </button>
@@ -96,10 +96,10 @@ export default function Hunt({ submissionsOpen }) {
           </div>
           <div className="mt-1 flex items-center gap-2 flex-wrap">
             <span className="text-white/80 text-sm font-medium">{session?.team_name}</span>
-            <span className="text-white/30">·</span>
+            <span className="text-white/50" aria-hidden="true">·</span>
             <span className="text-brand-teal font-bold text-sm">{totalPoints} pts</span>
-            <span className="text-white/30">·</span>
-            <span className="text-white/60 text-sm">
+            <span className="text-white/50" aria-hidden="true">·</span>
+            <span className="text-white/80 text-sm">
               {foundCount} of {totalCount} found
             </span>
           </div>
@@ -118,7 +118,7 @@ export default function Hunt({ submissionsOpen }) {
         )}
 
         {loading ? (
-          <div className="mt-16 text-center text-white/40 text-sm">Loading your hunt…</div>
+          <div className="mt-16 text-center text-white/60 text-sm">Loading your hunt…</div>
         ) : (
           <div className="mt-6 flex flex-col gap-3">
             {[...sponsorItems, ...standardItems].map((item) => (

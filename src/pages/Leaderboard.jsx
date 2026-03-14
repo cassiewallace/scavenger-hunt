@@ -72,17 +72,15 @@ export default function Leaderboard({ session }) {
                 My Hunt
               </Link>
             )}
-            <Link to="/" className="text-white/50 text-sm underline underline-offset-2">Home</Link>
+            <Link to="/" className="text-white/70 text-sm underline underline-offset-2">Home</Link>
           </div>
         </div>
       </header>
 
       <main className="max-w-2xl mx-auto px-4 pb-12">
         {loading ? (
-          <div className="mt-16 text-center text-white/40 text-sm" aria-live="polite">Loading scores…</div>
-        ) : rows.length === 0 ? (
-          <div className="mt-16 text-center text-white/40 text-sm" aria-live="polite">No submissions yet — be the first!</div>
-        ) : (
+          <div className="mt-16 text-center text-white/60 text-sm" aria-live="polite">Loading scores…</div>
+        ) : rows.length === 0 ? null : (
           <ol className="mt-6 flex flex-col gap-2" aria-label="Leaderboard">
             {rows.map((team, idx) => (
               <li
@@ -98,7 +96,7 @@ export default function Leaderboard({ session }) {
                     idx === 0 ? 'bg-yellow-400 text-black'
                     : idx === 1 ? 'bg-gray-300 text-black'
                     : idx === 2 ? 'bg-amber-600 text-white'
-                    : 'bg-white/10 text-white/60'
+                    : 'bg-white/10 text-white/80'
                   }`}
                   aria-label={`Rank ${idx + 1}`}
                 >

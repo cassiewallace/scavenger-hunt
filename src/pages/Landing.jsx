@@ -48,7 +48,7 @@ export default function Landing() {
           <img
             src="/logo.png"
             alt="Venture Out Femme Backcountry Festival — Salida, CO"
-            className="w-full select-none"
+            className="w-full max-w-[500px] select-none"
             draggable={false}
           />
         </a>
@@ -85,19 +85,8 @@ export default function Landing() {
           )}
         </div>
 
-        {/* Leaderboard */}
-        <section aria-labelledby="lb-heading">
-          <div className="flex items-center justify-between mb-3">
-            <h2
-              id="lb-heading"
-              className="text-xs font-bold tracking-widest uppercase text-white/50"
-            >
-              Leaderboard
-            </h2>
-          </div>
-
-          <LeaderboardList currentTeamId={session?.team_id} />
-        </section>
+        {/* Leaderboard — hidden when no submissions */}
+        <LeaderboardList currentTeamId={session?.team_id} showHeading />
       </main>
 
     </div>
