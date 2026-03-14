@@ -73,7 +73,7 @@ const items = [
 { id: "relay_race", label: "Your most heroic finish-line moment at the VNTRbirds Legendary Relay Race", points: 30, item_type: "standard" },
 { id: "sponsor_karitraa", label: "Kari Traa — Your embroidered beanie from the workshop", points: 50, item_type: "sponsor" },
 { id: "sponsor_skilikeagirl", label: "Ski Like a Girl — SWAG in the wild", points: 50, item_type: "sponsor" },
-{ id: "sponsor_rmu", label: "RMU — On the skin track", points: 50, item_type: "sponsor" },
+{ id: "sponsor_rmu", label: "RMU — Skis on the skin track", points: 50, item_type: "sponsor" },
 { id: "sponsor_backcountryready", label: "Backcountry Ready — First aid kit you built at the workshop", points: 50, item_type: "sponsor" },
 { id: "sponsor_bestday", label: "Best Day Brewing — At the trailhead", points: 50, item_type: "sponsor" },
 { id: "sponsor_beacon", label: "Beacon Guidebooks — Map you built at the Mapping Workshop", points: 50, item_type: "sponsor" },

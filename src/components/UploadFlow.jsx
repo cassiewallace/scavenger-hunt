@@ -13,7 +13,6 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
     label: 'text-gray-600',
     input: 'border-black/10 focus:border-brand-teal text-gray-900 bg-black/5 placeholder:text-gray-400',
     progress: 'bg-black/10',
-    cancelBtn: 'border border-black/10 text-gray-600 rounded-lg text-sm font-medium disabled:opacity-50',
     submitBtn: 'border-2 border-gray-900 text-gray-900 hover:bg-black/5',
   } : {
     filePicker: 'border-white/20 text-white/60 hover:border-brand-teal hover:text-brand-teal',
@@ -24,7 +23,6 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
     label: 'text-white/70',
     input: 'border-white/10 focus:border-brand-teal text-white bg-white/5 placeholder:text-white/50',
     progress: 'bg-white/10',
-    cancelBtn: 'border border-white/10 text-white/70 rounded-lg text-sm font-medium disabled:opacity-50',
     submitBtn: 'border-2 border-white text-white hover:bg-white/10',
   }
   const [selectedFile, setSelectedFile] = useState(null)
@@ -134,7 +132,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
           <span className={`truncate flex-1 ${c.fileName}`}>{selectedFile.name}</span>
           <button
             onClick={() => { setSelectedFile(null); setError(''); setSizeWarning(false) }}
-            className={`flex-shrink-0 ${c.removeBtn}`}
+            className={`flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-full text-xl font-bold ${c.removeBtn} hover:opacity-80`}
             aria-label="Remove selected file"
           >
             ✕
@@ -203,37 +201,28 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
         </div>
       )}
 
-      <div className="flex gap-2">
-        <button
-          onClick={() => { onClose(); setSelectedFile(null); setError(''); setProgress(0) }}
-          disabled={uploading}
-          className={`flex-1 min-tap ${c.cancelBtn}`}
-        >
-          Cancel
-        </button>
-        <button
-          onClick={handleUpload}
-          disabled={!selectedFile || uploading}
-          className={`flex-1 min-tap rounded-full text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 disabled:opacity-40 active:scale-95 transition-transform ${c.submitBtn}`}
-        >
-          {uploading ? (
-            <>
-              <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
-              </svg>
-              Uploading…
-            </>
-          ) : (
-            <>
-              <svg className="w-4 h-4 text-brand-teal flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 4h16M20 4v16M4 20L20 4" />
-              </svg>
-              Submit a Find
-            </>
-          )}
-        </button>
-      </div>
+      <button
+        onClick={handleUpload}
+        disabled={!selectedFile || uploading}
+        className={`w-full min-tap rounded-full text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 disabled:opacity-40 active:scale-95 transition-transform ${c.submitBtn}`}
+      >
+        {uploading ? (
+          <>
+            <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+            </svg>
+            Uploading…
+          </>
+        ) : (
+          <>
+            <svg className="w-4 h-4 text-brand-teal flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 4h16M20 4v16M4 20L20 4" />
+            </svg>
+            Submit
+          </>
+        )}
+      </button>
     </div>
   )
 }
