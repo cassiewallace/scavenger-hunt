@@ -100,7 +100,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
 
           {/* Sponsor logo — right of text lockup */}
           {isSponsor && logoSrc && !logoFailed && (
-            <img src={logoSrc} alt="" aria-hidden="true" onError={() => setLogoFailed(true)} className="flex-shrink-0 h-10 w-auto object-contain max-w-[80px] ml-3" />
+            <img src={logoSrc} alt="" aria-hidden="true" onError={() => setLogoFailed(true)} className="flex-shrink-0 h-14 w-auto object-contain max-w-[100px] ml-3 mr-4" />
           )}
 
           {/* Points badge + found checkmark */}
