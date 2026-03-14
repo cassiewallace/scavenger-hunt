@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../lib/supabase'
 import JSZip from 'jszip'
+import FeatherIcon from '../components/FeatherIcon'
 
 const ADMIN_PASSPHRASE = import.meta.env.VITE_ADMIN_PASSPHRASE
 
@@ -251,7 +252,7 @@ export default function Admin() {
                       <div className="text-sm text-white/60">{team.submissions.length} item{team.submissions.length !== 1 ? 's' : ''}</div>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="font-bold text-brand-teal text-lg">{team.total_points} feathers</span>
+                      <span className="font-bold text-brand-teal text-lg flex items-center gap-1">{team.total_points} feathers <FeatherIcon /></span>
                       <svg
                         className={`w-5 h-5 text-white/60 transition-transform ${expandedTeam === team.team_id ? 'rotate-180' : ''}`}
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"
@@ -304,7 +305,7 @@ function AdminSubmissionRow({ sub }) {
       <div className="flex-1 min-w-0">
         <div className="font-medium text-white text-sm truncate">{sub.item_label}</div>
         <div className="flex items-center gap-2 mt-0.5">
-          <span className="text-xs text-brand-teal font-semibold">{sub.points} feathers</span>
+          <span className="text-xs text-brand-teal font-semibold inline-flex items-center gap-0.5">{sub.points} feathers <FeatherIcon className="w-3 h-3" /></span>
           <span className="text-xs text-white/60">
             {new Date(sub.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </span>

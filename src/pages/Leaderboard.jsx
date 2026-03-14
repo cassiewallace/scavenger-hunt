@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
+import FeatherIcon from '../components/FeatherIcon'
 
 export default function Leaderboard({ session }) {
   const [rows, setRows] = useState([])
@@ -112,7 +113,7 @@ export default function Leaderboard({ session }) {
                 </div>
                 <div className="font-bold text-brand-teal text-lg tabular-nums flex-shrink-0">
                   {team.total_points}
-                  <span className="text-xs font-normal text-white/40 ml-0.5">feathers</span>
+                  <span className="text-xs font-normal text-white/40 ml-0.5 inline-flex items-center gap-0.5">feathers <FeatherIcon className="w-3 h-3" /></span>
                 </div>
               </li>
             ))}

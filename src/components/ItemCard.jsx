@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../lib/supabase'
 import UploadFlow from './UploadFlow'
 import sponsorLogos from '../constants/sponsorLogos'
+import FeatherIcon from './FeatherIcon'
 
 export default function ItemCard({ item, submission, session, submissionsOpen, onFound, isSponsor }) {
   const [uploading, setUploading] = useState(false)
@@ -112,7 +113,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
           {/* Points badge + found checkmark */}
           <div className="flex items-center gap-2 flex-shrink-0">
             <span className="bg-brand-teal/20 text-brand-teal text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap border border-brand-teal/30">
-              {item.points} feathers
+              {item.points} feathers <FeatherIcon className="w-3 h-3 inline-block" />
             </span>
             {isFound && (
               <span

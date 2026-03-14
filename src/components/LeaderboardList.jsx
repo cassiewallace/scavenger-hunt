@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../lib/supabase'
+import FeatherIcon from './FeatherIcon'
 
 /**
  * Reusable live leaderboard — renders a ranked list of teams by total points.
@@ -120,7 +121,7 @@ export default function LeaderboardList({ currentTeamId, compact = false, showHe
             {/* Score */}
             <div className="font-bold text-brand-teal text-lg tabular-nums flex-shrink-0">
               {team.total_points}
-              <span className="text-xs font-normal text-white/50 ml-0.5">feathers</span>
+              <span className="text-xs font-normal text-white/50 ml-0.5 inline-flex items-center gap-0.5">feathers <FeatherIcon className="w-3 h-3" /></span>
             </div>
           </li>
         )
