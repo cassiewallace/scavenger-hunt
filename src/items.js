@@ -10,7 +10,7 @@ const items = [
 { id: "animal_tracks", label: "Animal Tracks or Evidence of an animal (no dogs)", points: 15, item_type: "standard" },
 { id: "plants_bloom", label: "Plants in bloom", points: 25, item_type: "standard" },
 { id: "terrain_trap", label: "Terrain Trap", points: 5, item_type: "standard" },
-{ id: "pocket_bacon", label: "Pocket Bacon on the skin track", points: 10, item_type: "standard" },
+{ id: "pocket_bacon", label: "Pocket bacon on the skin track", points: 10, item_type: "standard" },
 { id: "switchbacks", label: "Switchbacks on the skin track", points: 5, item_type: "standard" },
 { id: "kickturns", label: "Kickturns", points: 5, item_type: "standard" },
 { id: "layers_snowpack", label: "Layers in the snow pack", points: 10, item_type: "standard" },
