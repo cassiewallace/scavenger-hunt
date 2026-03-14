@@ -12,6 +12,7 @@ export default function Submit() {
   const [submissionsOpen, setSubmissionsOpen] = useState(true)
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('')
+  const [sortByPoints, setSortByPoints] = useState(false)
 
   useEffect(() => {
     if (!session) { navigate('/'); return }
@@ -49,9 +50,10 @@ export default function Submit() {
   const standardItems = items.filter((i) => i.item_type === 'standard')
   const allItems = [...sponsorItems, ...standardItems]
 
-  const filtered = filter.trim()
+  const filtered = (filter.trim()
     ? allItems.filter((i) => i.label.toLowerCase().includes(filter.trim().toLowerCase()))
     : allItems
+  ).slice().sort(sortByPoints ? (a, b) => b.points - a.points : () => 0)
 
   return (
     <div className="min-h-screen bg-brand-bg flex flex-col">
@@ -72,15 +74,29 @@ export default function Submit() {
       </header>
 
       <main className="max-w-2xl mx-auto w-full px-4 pb-12 flex flex-col flex-1">
-        {/* Search filter */}
-        <div className="sticky top-[57px] z-20 bg-brand-bg pt-4 pb-3">
+        {/* Search filter + sort */}
+        <div className="sticky top-[57px] z-20 bg-brand-bg pt-4 pb-3 flex gap-2">
           <input
             type="search"
             placeholder="Filter items…"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-white/10 focus:border-brand-teal focus:outline-none text-sm text-white bg-brand-surface placeholder:text-white/50 transition-colors"
+            className="flex-1 px-4 py-3 rounded-xl border border-white/10 focus:border-brand-teal focus:outline-none text-sm text-white bg-brand-surface placeholder:text-white/50 transition-colors"
           />
+          <button
+            onClick={() => setSortByPoints((s) => !s)}
+            className={`flex-shrink-0 px-3 py-3 rounded-xl border text-sm font-medium transition-colors ${
+              sortByPoints
+                ? 'border-brand-teal bg-brand-teal/10 text-brand-teal'
+                : 'border-white/10 text-white/60 hover:text-white/80'
+            }`}
+            aria-pressed={sortByPoints}
+            title="Sort by point value"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+            </svg>
+          </button>
         </div>
 
         {loading ? (
