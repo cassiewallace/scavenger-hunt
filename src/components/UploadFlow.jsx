@@ -139,7 +139,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
       {isHypeVideo && (
         <div>
           <label className="block text-xs font-semibold text-white/70 mb-1">
-            Tag us on IG for +25 pts! Paste your post link here (honor system)
+            Tag us on IG for +25 feathers! Paste your post link here (honor system)
           </label>
           <input
             type="url"
