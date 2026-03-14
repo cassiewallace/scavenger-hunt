@@ -96,19 +96,18 @@ export default function Register() {
 
   return (
     <div className="min-h-screen bg-brand-bg flex flex-col">
-      <div className="flex-1 flex flex-col justify-center px-6 py-12 max-w-md mx-auto w-full">
-        <div className="mb-8 text-center">
-          <img
-            src="/logo.png"
-            alt="Venture Out"
-            className="w-full max-w-[500px] mx-auto mb-4 select-none"
-            draggable={false}
-          />
-          <p className="text-white/80 text-base">Ready to hunt?</p>
-        </div>
+      <div className="flex flex-col items-center pt-6 pb-4 px-3">
+        <img
+          src="/logo.png"
+          alt="Venture Out"
+          className="w-full max-w-[500px] select-none"
+          draggable={false}
+        />
+      </div>
 
+      <div className="flex-1 flex flex-col justify-center px-6 pb-12 max-w-md mx-auto w-full">
         {/* Mode tabs */}
-        <div className="flex rounded-xl border border-white/10 overflow-hidden mb-6">
+        <div className="flex rounded-xl bg-white/5 p-1 mb-6">
           {[
             { key: 'create', label: 'Create a team' },
             { key: 'join',   label: 'Join a team' },
@@ -117,10 +116,10 @@ export default function Register() {
               key={key}
               type="button"
               onClick={() => { setMode(key); setError('') }}
-              className={`flex-1 py-3 text-sm font-medium transition-colors ${
+              className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-colors ${
                 mode === key
-                  ? 'bg-brand-surface text-white'
-                  : 'text-white/60 hover:text-white/80'
+                  ? 'bg-brand-surface text-white shadow'
+                  : 'text-white/50 hover:text-white/80'
               }`}
             >
               {label}
@@ -203,11 +202,6 @@ export default function Register() {
           </button>
         </form>
 
-        {mode === 'create' && (
-          <p className="mt-6 text-center text-sm text-white/60">
-            Already registered? Use the same team name to resume your session on any device.
-          </p>
-        )}
       </div>
     </div>
   )

@@ -11,6 +11,7 @@ export default function Hunt({ submissionsOpen }) {
   const [submissions, setSubmissions] = useState([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('')
+  const [hideCompleted, setHideCompleted] = useState(false)
 
   useEffect(() => {
     if (!session) { navigate('/'); return }
@@ -67,9 +68,9 @@ export default function Hunt({ submissionsOpen }) {
   const standardItems = items.filter((i) => i.item_type === 'standard').slice().sort((a, b) => b.points - a.points)
   const allItems = [...sponsorItems, ...standardItems]
 
-  const filtered = filter.trim()
-    ? allItems.filter((i) => i.label.toLowerCase().includes(filter.trim().toLowerCase()))
-    : allItems
+  const filtered = allItems
+    .filter((i) => !filter.trim() || i.label.toLowerCase().includes(filter.trim().toLowerCase()))
+    .filter((i) => !hideCompleted || !foundMap[i.id])
 
   return (
     <div className="min-h-screen bg-brand-bg">
@@ -94,15 +95,26 @@ export default function Hunt({ submissionsOpen }) {
           </div>
         )}
 
-        {/* Search filter + sort */}
+        {/* Search + filter */}
         <div className="sticky top-[69px] z-30 bg-brand-bg pt-4 pb-3 flex gap-2">
           <input
             type="search"
-            placeholder="Filter items…"
+            placeholder="Search"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             className="flex-1 px-4 py-3 rounded-xl border border-white/10 focus:border-brand-teal focus:outline-none text-sm text-white bg-brand-surface placeholder:text-white/50 transition-colors"
           />
+          <button
+            onClick={() => setHideCompleted((v) => !v)}
+            className={`flex-shrink-0 px-3 py-3 rounded-xl border text-xs font-semibold transition-colors whitespace-nowrap ${
+              hideCompleted
+                ? 'border-brand-teal bg-brand-teal/10 text-brand-teal'
+                : 'border-white/10 text-white/60 hover:text-white/80'
+            }`}
+            aria-pressed={hideCompleted}
+          >
+            Not done
+          </button>
         </div>
 
         {loading ? (
