@@ -107,7 +107,7 @@ export default function Hunt({ submissionsOpen }) {
         )}
 
         {/* Search + filter */}
-        <div className="sticky top-12 z-30 bg-brand-bg pt-4 pb-3 flex gap-2">
+        <div className="sticky top-12 z-30 pt-4 pb-3 flex gap-2">
           <input
             type="search"
             placeholder="Search"

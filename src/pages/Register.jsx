@@ -24,23 +24,11 @@ export default function Register() {
   async function loadAvailableTeams() {
     setTeamsLoading(true)
     setSelectedTeamId('')
-    // Try fetching with member_count to filter out full teams (max 2)
-    const { data, error: fetchErr } = await supabase
+    const { data } = await supabase
       .from('teams')
-      .select('id, team_name, member_count')
+      .select('id, team_name')
       .order('team_name')
-
-    if (fetchErr) {
-      // member_count column doesn't exist yet — show all teams
-      const { data: all } = await supabase
-        .from('teams')
-        .select('id, team_name')
-        .order('team_name')
-      setAvailableTeams(all || [])
-    } else {
-      // Only show teams with fewer than 2 members (null counts as 0)
-      setAvailableTeams(data.filter(t => (t.member_count ?? 0) < 2))
-    }
+    setAvailableTeams(data || [])
     setTeamsLoading(false)
   }
 
@@ -107,7 +95,7 @@ export default function Register() {
         </Link>
       </div>
 
-      <div className="flex-1 flex flex-col justify-start pt-6 px-6 pb-12 max-w-md mx-auto w-full">
+      <div className="flex-1 flex flex-col justify-start pt-6 px-6 pb-6 max-w-md mx-auto w-full">
         {/* Mode tabs */}
         <div className="flex rounded-xl bg-white/5 p-1 mb-6">
           {[

@@ -76,7 +76,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
           ) : null}
 
           {/* Points badge — teal with feather when pending, green with check when found */}
-          <span className={`text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap border flex items-center gap-1 ${
+          <span className={`w-14 text-xs font-bold py-0.5 rounded-full border flex items-center justify-center gap-1 ${
             isFound
               ? 'bg-brand-success/20 text-brand-success border-brand-success/30'
               : 'bg-brand-teal/20 text-brand-teal border-brand-teal/30'
