@@ -71,7 +71,7 @@ const items = [
 { id: "film_festival", label: "Most dramatic reaction shot at No Man's Land Film Festival", points: 20, item_type: "standard" },
 { id: "robins_breakfast", label: "First bite (or plate) at Robin's catered breakfast", points: 10, item_type: "standard" },
 { id: "relay_race", label: "Your most heroic finish-line moment at the VNTRbirds Legendary Relay Race", points: 30, item_type: "standard" },
-{ id: "sponsor_karitraa", label: "Kari Traa — Your embroidered beanie from the workshop", points: 50, item_type: "sponsor" },
+{ id: "sponsor_karitraa", label: "Kari Traa — Embroidered beanie from the workshop", points: 50, item_type: "sponsor" },
 { id: "sponsor_skilikeagirl", label: "Ski Like a Girl — SWAG in the wild", points: 50, item_type: "sponsor" },
 { id: "sponsor_rmu", label: "RMU — Skis on the skin track", points: 50, item_type: "sponsor" },
 { id: "sponsor_backcountryready", label: "Backcountry Ready — First aid kit you built at the workshop", points: 50, item_type: "sponsor" },

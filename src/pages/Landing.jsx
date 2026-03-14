@@ -48,7 +48,7 @@ export default function Landing({ submissionsOpen, settingsLoaded }) {
           <img
             src="/logo.png"
             alt="Venture Out Femme Backcountry Festival — Salida, CO"
-            className="w-full max-w-[500px] select-none"
+            className="w-full max-w-[300px] select-none"
             draggable={false}
           />
         </a>
@@ -72,7 +72,7 @@ export default function Landing({ submissionsOpen, settingsLoaded }) {
             {session ? (
               <button
                 onClick={handleSubmitFind}
-                className="min-tap w-full rounded-full border-2 border-white text-white text-base font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-white/10 active:scale-95 transition-transform"
+                className="min-tap w-full rounded-full bg-white border-2 border-black text-black text-base font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-gray-100 active:scale-95 transition-transform"
               >
                 <svg className="w-5 h-5 text-brand-teal flex-shrink-0" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
                   <path d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z" />
@@ -82,7 +82,7 @@ export default function Landing({ submissionsOpen, settingsLoaded }) {
             ) : (
               <button
                 onClick={handleAddTeam}
-                className="min-tap w-full rounded-full border-2 border-white text-white text-base font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-white/10 active:scale-95 transition-transform"
+                className="min-tap w-full rounded-full bg-white border-2 border-black text-black text-base font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-gray-100 active:scale-95 transition-transform"
               >
                 <svg className="w-5 h-5 text-brand-teal flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 4h16M20 4v16M4 20L20 4" />

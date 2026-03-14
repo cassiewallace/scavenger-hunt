@@ -36,7 +36,6 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
 
   const logoConfig = isSponsor ? sponsorLogos[item.id] : null
   const logoSrc = logoConfig ? `/sponsors/${logoConfig.file}` : null
-  const logoLightBg = logoConfig?.lightBg ?? false
 
   // For sponsor items, label is "Sponsor Name — Item description"
   const [sponsorName, itemDesc] = isSponsor
@@ -53,77 +52,64 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
 
   return (
     <div className={cardBase}>
-      <div className={`flex items-center gap-3 px-4 ${isSponsor ? 'py-6' : 'py-3'}`}>
-        {/* Left slot: thumbnail if found, camera button if not */}
-        {isFound && thumbUrl ? (
-          <div className={`flex-shrink-0 w-14 h-14 rounded-lg overflow-hidden ${isSponsor ? 'bg-black/10' : 'bg-white/10'}`}>
-            {/\.(mp4|mov|webm|avi)$/i.test(submission.file_path) ? (
-              <video
-                src={thumbUrl}
-                className="w-full h-full object-cover"
-                muted
-                playsInline
-              />
+      <div className={`flex items-center gap-3 px-4 py-3`}>
+        {/* Left slot: media/camera on top, points badge below */}
+        <div className="flex-shrink-0 flex flex-col items-center gap-1.5">
+          {isFound && thumbUrl ? (
+            <div className={`w-14 h-14 rounded-lg overflow-hidden ${isSponsor ? 'bg-black/10' : 'bg-white/10'}`}>
+              {/\.(mp4|mov|webm|avi)$/i.test(submission.file_path) ? (
+                <video src={thumbUrl} className="w-full h-full object-cover" muted playsInline />
+              ) : (
+                <img src={thumbUrl} alt={item.label} className="w-full h-full object-cover" />
+              )}
+            </div>
+          ) : !isFound && submissionsOpen ? (
+            <button
+              onClick={() => setUploadOpen(true)}
+              className="w-14 h-14 rounded-lg bg-brand-primary flex items-center justify-center active:scale-95 transition-transform"
+              aria-label="Submit find"
+            >
+              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+                <path d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z" />
+              </svg>
+            </button>
+          ) : null}
+
+          {/* Points badge — teal with feather when pending, green with check when found */}
+          <span className={`text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap border flex items-center gap-1 ${
+            isFound
+              ? 'bg-brand-success/20 text-brand-success border-brand-success/30'
+              : 'bg-brand-teal/20 text-brand-teal border-brand-teal/30'
+          }`}>
+            {item.points}
+            {isFound ? (
+              <svg className="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
+                <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z" />
+              </svg>
             ) : (
-              <img
-                src={thumbUrl}
-                alt={item.label}
-                className="w-full h-full object-cover"
-              />
+              <FeatherIcon className="w-3 h-3 flex-shrink-0" />
             )}
-          </div>
-        ) : !isFound && submissionsOpen ? (
-          <button
-            onClick={() => setUploadOpen(true)}
-            className="flex-shrink-0 w-14 h-14 rounded-lg bg-brand-primary flex items-center justify-center active:scale-95 transition-transform"
-            aria-label="Submit find"
-          >
-            <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
-              <path d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z" />
-            </svg>
-          </button>
-        ) : null}
+          </span>
+        </div>
 
         {/* Item info */}
-        <div className="flex-1 min-w-0 flex items-center gap-3">
-          {/* Text lockup */}
-          <div className="flex-1 min-w-0">
-            {isSponsor && (
-              logoSrc && !logoFailed ? (
-                <div className={`mb-2 inline-flex items-center justify-center ${!logoLightBg ? 'bg-gray-800 rounded-lg px-2 py-1' : ''}`}>
-                  <img
-                    src={logoSrc}
-                    alt={sponsorName}
-                    onError={() => setLogoFailed(true)}
-                    className="h-8 w-auto object-contain max-w-[140px]"
-                  />
-                </div>
-              ) : (
-                <p className="text-black/50 text-xs font-semibold uppercase tracking-wide mb-1">{sponsorName}</p>
-              )
-            )}
-            <p className={`font-semibold text-lg leading-snug ${isSponsor ? 'text-gray-900' : 'text-white'}`}>{isSponsor ? itemDesc : item.label}</p>
-            {alreadyFound && (
-              <p className="text-xs text-brand-magentaVibrant font-medium mt-0.5">Already submitted!</p>
-            )}
-          </div>
-
-          {/* Points badge + found checkmark */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <span className="bg-brand-teal/20 text-brand-teal text-sm font-bold px-3 py-1 rounded-full whitespace-nowrap border border-brand-teal/30">
-              {item.points} <FeatherIcon className="w-3.5 h-3.5 inline-block" />
-            </span>
-            {isFound && (
-              <span
-                className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-brand-success/20 rounded-full"
-                aria-label="Found"
-              >
-                <svg className="w-4 h-4 text-brand-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                </svg>
-              </span>
-            )}
-          </div>
+        <div className="flex-1 min-w-0">
+          {isSponsor && (
+            logoSrc && !logoFailed ? (
+              <img
+                src={logoSrc}
+                alt={sponsorName}
+                onError={() => setLogoFailed(true)}
+                className="h-10 w-auto object-contain max-w-[140px] mb-2"
+              />
+            ) : (
+              <p className="text-black/50 text-xs font-semibold uppercase tracking-wide mb-1">{sponsorName}</p>
+            )
+          )}
+          <p className={`font-semibold text-lg leading-snug ${isSponsor ? 'text-gray-900' : 'text-white'}`}>{isSponsor ? itemDesc : item.label}</p>
+          {alreadyFound && (
+            <p className="text-xs text-brand-magentaVibrant font-medium mt-0.5">Already submitted!</p>
+          )}
         </div>
       </div>
 

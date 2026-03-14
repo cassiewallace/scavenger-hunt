@@ -77,9 +77,20 @@ export default function Hunt({ submissionsOpen }) {
       {/* Header */}
       <header className="sticky top-0 z-10 bg-brand-surface border-b border-white/10 text-white px-4 py-3 shadow-lg">
         <div className="max-w-2xl mx-auto flex items-center justify-between gap-3">
-          <p className="text-white font-bold text-lg leading-tight truncate">{session?.team_name}</p>
+          <div className="flex items-center gap-2 min-w-0">
+            <button
+              onClick={() => navigate('/')}
+              aria-label="Back to home"
+              className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
+            >
+              <svg className="w-5 h-5 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <p className="text-white font-bold text-lg leading-tight truncate">{session?.team_name}</p>
+          </div>
           <p className="text-brand-teal font-semibold text-sm flex items-center gap-1 flex-shrink-0">
-            {totalPoints} of {totalPossiblePoints} <FeatherIcon /> possible
+            {totalPoints} of {totalPossiblePoints} <FeatherIcon />
           </p>
         </div>
       </header>
@@ -96,7 +107,7 @@ export default function Hunt({ submissionsOpen }) {
         )}
 
         {/* Search + filter */}
-        <div className="sticky top-[69px] z-30 bg-brand-bg pt-4 pb-3 flex gap-2">
+        <div className="sticky top-12 z-30 bg-brand-bg pt-4 pb-3 flex gap-2">
           <input
             type="search"
             placeholder="Search"
