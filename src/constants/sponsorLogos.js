@@ -12,7 +12,7 @@ const sponsorLogos = {
   sponsor_salidamtn:    { file: 'salida-mountain-sports.png',    lightBg: false },
   sponsor_coalition:    { file: 'coalition-snow.png',            lightBg: true  },
   sponsor_breckmassage: { file: 'breck-mountain-massage.png',    lightBg: true  },
-  sponsor_breckenridge: { file: 'breckenridge.png',              lightBg: true  },
+  sponsor_breckenridge: { file: 'breckenridge-distillery.png',   lightBg: true  },
   sponsor_glitter:      { file: 'sex-plants-rock-and-roll.png',  lightBg: true  },
   sponsor_titsdeep:     { file: 'tits-deep.png',                 lightBg: true  },
   sponsor_sunshine:     { file: 'sunshine-sauna.png',            lightBg: true  },
