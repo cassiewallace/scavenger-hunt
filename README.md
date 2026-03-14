@@ -53,16 +53,6 @@ sponsor_karitraa: { file: 'kari-traa.png', lightBg: true }
 
 ---
 
-## UI Notes
-
-- **Hunt header** — team name on the left, feather count on the right; back button returns to the leaderboard
-- **Item cards** — left slot contains the camera button (or submission thumbnail) with the points badge below it; badge turns green with a checkmark once submitted
-- **Sponsor cards** — white background, magenta left border, sponsor logo above the item description
-- **UploadFlow** — expands inline below the item; accepts photo or video up to 50 MB; shows upload progress; sponsor card variant uses dark-on-light colors for contrast
-- **CTA buttons** — white background, black border, black text throughout
-
----
-
 ## Brand Colors
 
 All tokens are defined in `src/constants/brand.js`. Tailwind picks them up via `tailwind.config.js`.
@@ -222,14 +212,3 @@ Firebase console → **Hosting → Add custom domain** → follow DNS steps. SSL
 | `public/favicon.png` | Browser tab icon |
 | `public/sponsors/*.png` | Sponsor logos — filename must match `src/constants/sponsorLogos.js` |
 
----
-
-## Pre-Event Checklist
-
-- Update `src/items.js` with final item list, labels, and point values
-- Add sponsor logos to `public/sponsors/` and verify filenames in `src/constants/sponsorLogos.js`
-- Set GitHub Actions secrets (Supabase URL, anon key, admin passphrase)
-- Push to `main` to trigger a production build
-- Confirm submissions toggle is **Open** in `/admin` before the event starts
-- Test upload flow on iOS and Android
-- Print QR code pointing to your Firebase URL and post at event HQ

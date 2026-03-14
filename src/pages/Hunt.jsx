@@ -107,7 +107,7 @@ export default function Hunt({ submissionsOpen }) {
         )}
 
         {/* Search + filter */}
-        <div className="sticky top-12 z-30 pt-4 pb-3 flex gap-2">
+        <div className="pt-4 pb-3 flex gap-2">
           <input
             type="search"
             placeholder="Search"
@@ -120,7 +120,7 @@ export default function Hunt({ submissionsOpen }) {
             className={`flex-shrink-0 px-3 py-3 rounded-xl border text-xs font-semibold transition-colors whitespace-nowrap flex items-center gap-1.5 ${
               hideCompleted
                 ? 'border-brand-teal bg-brand-teal/10 text-brand-teal'
-                : 'border-white/10 text-white/60 hover:text-white/80'
+                : 'border-white/10 bg-brand-surface text-white/60 hover:text-white/80'
             }`}
             aria-pressed={hideCompleted}
           >
