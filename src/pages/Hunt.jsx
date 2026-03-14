@@ -10,6 +10,8 @@ export default function Hunt({ submissionsOpen }) {
   const session = JSON.parse(localStorage.getItem('vntrbirds_session') || 'null')
   const [submissions, setSubmissions] = useState([])
   const [loading, setLoading] = useState(true)
+  const [filter, setFilter] = useState('')
+  const [sortByPoints, setSortByPoints] = useState(false)
 
   useEffect(() => {
     if (!session) { navigate('/'); return }
@@ -65,45 +67,25 @@ export default function Hunt({ submissionsOpen }) {
 
   const sponsorItems = items.filter((i) => i.item_type === 'sponsor')
   const standardItems = items.filter((i) => i.item_type === 'standard')
+  const allItems = [...sponsorItems, ...standardItems]
 
-  function handleLogout() {
-    localStorage.removeItem('vntrbirds_session')
-    navigate('/')
-  }
+  const filtered = (filter.trim()
+    ? allItems.filter((i) => i.label.toLowerCase().includes(filter.trim().toLowerCase()))
+    : allItems
+  ).slice().sort(sortByPoints ? (a, b) => b.points - a.points : () => 0)
 
   return (
     <div className="min-h-screen bg-brand-bg">
       {/* Header */}
       <header className="sticky top-0 z-10 bg-brand-surface border-b border-white/10 text-white px-4 py-3 shadow-lg">
-        <div className="max-w-2xl mx-auto">
-          <div className="flex items-center justify-between">
-            <Link to="/">
-              <h1 className="font-display text-3xl leading-none text-white">VNTRbirds</h1>
-            </Link>
-            <div className="flex items-center gap-3">
-              <Link
-                to="/"
-                className="text-xs font-semibold text-brand-teal underline underline-offset-2"
-              >
-                Leaderboard
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="text-xs text-white/70 underline underline-offset-2"
-              >
-                Log out
-              </button>
-            </div>
-          </div>
-          <div className="mt-1 flex items-center gap-2 flex-wrap">
-            <span className="text-white/80 text-sm font-medium">{session?.team_name}</span>
-            <span className="text-white/50" aria-hidden="true">·</span>
-            <span className="text-brand-teal font-bold text-sm flex items-center gap-1">{totalPoints} feathers <FeatherIcon /></span>
-            <span className="text-white/50" aria-hidden="true">·</span>
-            <span className="text-white/80 text-sm">
-              {foundCount} of {totalCount} found
-            </span>
-          </div>
+        <div className="max-w-2xl mx-auto flex items-center gap-2 flex-wrap">
+          <span className="text-white/80 text-sm font-medium">{session?.team_name}</span>
+          <span className="text-white/50" aria-hidden="true">·</span>
+          <span className="text-brand-teal font-bold text-sm flex items-center gap-1">{totalPoints} feathers <FeatherIcon /></span>
+          <span className="text-white/50" aria-hidden="true">·</span>
+          <span className="text-white/80 text-sm">
+            {foundCount} of {totalCount} found
+          </span>
         </div>
       </header>
 
@@ -118,11 +100,38 @@ export default function Hunt({ submissionsOpen }) {
           </div>
         )}
 
+        {/* Search filter + sort */}
+        <div className="sticky top-[57px] z-20 bg-brand-bg pt-4 pb-3 flex gap-2">
+          <input
+            type="search"
+            placeholder="Filter items…"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="flex-1 px-4 py-3 rounded-xl border border-white/10 focus:border-brand-teal focus:outline-none text-sm text-white bg-brand-surface placeholder:text-white/50 transition-colors"
+          />
+          <button
+            onClick={() => setSortByPoints((s) => !s)}
+            className={`flex-shrink-0 px-3 py-3 rounded-xl border text-sm font-medium transition-colors ${
+              sortByPoints
+                ? 'border-brand-teal bg-brand-teal/10 text-brand-teal'
+                : 'border-white/10 text-white/60 hover:text-white/80'
+            }`}
+            aria-pressed={sortByPoints}
+            title="Sort by feather value"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+            </svg>
+          </button>
+        </div>
+
         {loading ? (
           <div className="mt-16 text-center text-white/60 text-sm">Loading your hunt…</div>
+        ) : filtered.length === 0 ? (
+          <div className="mt-16 text-center text-white/60 text-sm">No items match "{filter}"</div>
         ) : (
-          <div className="mt-6 flex flex-col gap-3">
-            {[...sponsorItems, ...standardItems].map((item) => (
+          <div className="flex flex-col gap-3">
+            {filtered.map((item) => (
               <ItemCard
                 key={item.id}
                 item={item}

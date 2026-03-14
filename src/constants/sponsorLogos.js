@@ -5,7 +5,8 @@
 const sponsorLogos = {
   sponsor_karitraa:     { file: 'karitraa.png',                  lightBg: true  },
   sponsor_skilikeagirl: { file: 'skilikeagirl.png',              lightBg: true  },
-  sponsor_rmu:          { file: 'backcountry-ready.png',         lightBg: true  },
+  sponsor_rmu:          { file: 'rmu.png',                       lightBg: true  },
+  sponsor_backcountryready: { file: 'backcountry-ready.png',    lightBg: true  },
   sponsor_bestday:      { file: 'best-day.png',                  lightBg: true  },
   sponsor_beacon:       { file: 'beacon.png',                    lightBg: true  },
   sponsor_salidamtn:    { file: 'salida-mountain-sports.png',    lightBg: false },
