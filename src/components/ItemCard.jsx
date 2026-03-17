@@ -4,7 +4,9 @@ import UploadFlow from './UploadFlow'
 import sponsorLogos from '../constants/sponsorLogos'
 import FeatherIcon from './FeatherIcon'
 
-export default function ItemCard({ item, submission, session, submissionsOpen, onFound, isSponsor }) {
+const ACCENT_COLORS = ['#c840cc', '#26c4bc', '#4b8fd4', '#9b85d0']
+
+export default function ItemCard({ item, index, submission, session, submissionsOpen, onFound, isSponsor }) {
   const [uploading, setUploading] = useState(false)
   const [flash, setFlash] = useState(false)
   const [thumbUrl, setThumbUrl] = useState(null)
@@ -42,21 +44,20 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
     ? item.label.split(' — ')
     : [null, item.label]
 
+  const accentColor = ACCENT_COLORS[(index ?? 0) % ACCENT_COLORS.length]
+
   const cardBase = [
-    'rounded-xl border transition-all duration-300 overflow-hidden',
-    isSponsor
-      ? 'bg-white border-brand-magenta/20 border-l-4 border-l-brand-magentaVibrant shadow-md'
-      : 'bg-brand-surface border-white/5',
+    'rounded-xl border-[0.5px] border-black/20 border-l-4 bg-white shadow-md transition-all duration-300 overflow-hidden',
     flash ? 'animate-green-flash' : '',
   ].join(' ')
 
   return (
-    <div className={cardBase}>
-      <div className={`flex items-center gap-3 px-4 py-3`}>
+    <div className={cardBase} style={{ borderLeftColor: accentColor }}>
+      <div className="flex items-center gap-4 px-4 py-3">
         {/* Left slot: media/camera on top, points badge below */}
         <div className="flex-shrink-0 flex flex-col items-center gap-1.5">
           {isFound && thumbUrl ? (
-            <div className={`w-14 h-14 rounded-lg overflow-hidden ${isSponsor ? 'bg-black/10' : 'bg-white/10'}`}>
+            <div className="w-14 h-14 rounded-lg overflow-hidden bg-black/10">
               {/\.(mp4|mov|webm|avi)$/i.test(submission.file_path) ? (
                 <video src={thumbUrl} className="w-full h-full object-cover" muted playsInline />
               ) : (
@@ -66,7 +67,8 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
           ) : !isFound && submissionsOpen ? (
             <button
               onClick={() => setUploadOpen(true)}
-              className="w-14 h-14 rounded-lg bg-brand-primary flex items-center justify-center active:scale-95 transition-transform"
+              className="w-14 h-14 rounded-lg border-0 flex items-center justify-center active:scale-95 transition-transform"
+              style={{ backgroundColor: accentColor }}
               aria-label="Submit find"
             >
               <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true">
@@ -75,11 +77,11 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
             </button>
           ) : null}
 
-          {/* Points badge — teal with feather when pending, green with check when found */}
+          {/* Points badge */}
           <span className={`w-14 text-xs font-bold py-0.5 rounded-full border flex items-center justify-center gap-1 ${
             isFound
               ? 'bg-brand-success/20 text-brand-success border-brand-success/30'
-              : 'bg-brand-teal/20 text-brand-teal border-brand-teal/30'
+              : 'bg-black/5 text-black border-black/15'
           }`}>
             {item.points}
             {isFound ? (
@@ -106,7 +108,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
               <p className="text-black/50 text-xs font-semibold uppercase tracking-wide mb-1">{sponsorName}</p>
             )
           )}
-          <p className={`font-semibold text-lg leading-snug ${isSponsor ? 'text-gray-900' : 'text-white'}`}>{isSponsor ? itemDesc : item.label}</p>
+          <p className="font-semibold text-lg leading-snug text-gray-900">{isSponsor ? itemDesc : item.label}</p>
           {alreadyFound && (
             <p className="text-xs text-brand-magentaVibrant font-medium mt-0.5">Already submitted!</p>
           )}
@@ -115,7 +117,7 @@ export default function ItemCard({ item, submission, session, submissionsOpen, o
 
       {/* Upload flow — expanded when camera button tapped */}
       {!isFound && submissionsOpen && uploadOpen && (
-        <div className={`px-4 pb-3 ${isSponsor ? 'bg-gray-50 border-t border-black/5' : ''}`}>
+        <div className="px-4 pb-3 bg-gray-50 border-t border-black/5">
           <UploadFlow
             item={item}
             session={session}

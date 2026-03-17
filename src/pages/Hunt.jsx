@@ -137,10 +137,11 @@ export default function Hunt({ submissionsOpen }) {
           <div className="mt-16 text-center text-white/60 text-sm">No items match "{filter}"</div>
         ) : (
           <div className="flex flex-col gap-3">
-            {filtered.map((item) => (
+            {filtered.map((item, index) => (
               <ItemCard
                 key={item.id}
                 item={item}
+                index={index}
                 submission={foundMap[item.id]}
                 session={session}
                 submissionsOpen={submissionsOpen}
