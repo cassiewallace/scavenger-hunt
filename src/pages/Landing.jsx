@@ -54,6 +54,13 @@ export default function Landing({ submissionsOpen, settingsLoaded }) {
         </a>
       </header>
 
+      {/* ── Rules ──────────────────────────────────────────────────── */}
+      {!session && (
+        <p className="text-center text-sm px-6 pb-4 max-w-md mx-auto">
+          <span className="font-semibold">RULES:</span> can work solo or in a team of up to 3. Cannot split up, must be together while hunting. Winners announced during Sunday breakfast. Great prize packs for top 2 teams!
+        </p>
+      )}
+
       {/* ── Actions + Leaderboard ──────────────────────────────────── */}
       <main className="flex-1 flex flex-col px-5 pb-10 max-w-md mx-auto w-full">
 
