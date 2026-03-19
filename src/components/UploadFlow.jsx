@@ -5,7 +5,7 @@ const MAX_FILE_MB = 50
 
 export default function UploadFlow({ item, session, onFound, onAlreadyFound, onClose, uploading, setUploading, isSponsor }) {
   const c = isSponsor ? {
-    filePicker: 'border-black/20 text-gray-500 hover:border-brand-teal hover:text-brand-teal',
+    filePicker: 'border-brand-teal text-brand-teal',
     fileSelected: 'text-gray-700 bg-black/5 border border-black/10',
     fileIcon: 'text-gray-400',
     fileName: 'text-gray-900',
@@ -15,7 +15,7 @@ export default function UploadFlow({ item, session, onFound, onAlreadyFound, onC
     progress: 'bg-black/10',
     submitBtn: 'border-2 border-gray-900 text-gray-900 hover:bg-black/5',
   } : {
-    filePicker: 'border-white/20 text-white/60 hover:border-brand-teal hover:text-brand-teal',
+    filePicker: 'border-brand-teal text-brand-teal',
     fileSelected: 'text-white/70 bg-white/5 border border-white/10',
     fileIcon: 'text-white/40',
     fileName: 'text-white',
