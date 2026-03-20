@@ -9,13 +9,24 @@ export default function Leaderboard({ session }) {
   const [animatingIds, setAnimatingIds] = useState(new Set())
 
   async function loadLeaderboard() {
-    const { data } = await supabase
-      .from('submissions')
-      .select('team_id, points, teams(team_name)')
-    if (!data) return
+    const [{ data: submissions }, { data: teams }] = await Promise.all([
+      supabase.from('submissions').select('team_id, points, teams(team_name)'),
+      supabase.from('teams').select('id, team_name'),
+    ])
+
+    if (!teams) return
 
     const byTeam = {}
-    for (const row of data) {
+    for (const team of teams) {
+      byTeam[team.id] = {
+        team_id: team.id,
+        team_name: team.team_name,
+        total_points: 0,
+        item_count: 0,
+      }
+    }
+
+    for (const row of submissions ?? []) {
       const id = row.team_id
       if (!byTeam[id]) {
         byTeam[id] = {
@@ -81,7 +92,7 @@ export default function Leaderboard({ session }) {
       <main className="max-w-2xl mx-auto px-4 pb-12">
         {loading ? (
           <div className="mt-16 text-center text-white/60 text-sm" aria-live="polite">Loading scores…</div>
-        ) : rows.length === 0 ? null : (
+        ) : (
           <ol className="mt-6 flex flex-col gap-2" aria-label="Leaderboard">
             {rows.map((team, idx) => (
               <li

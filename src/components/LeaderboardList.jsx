@@ -13,14 +13,24 @@ export default function LeaderboardList({ currentTeamId, compact = false, showHe
   const [animatingIds, setAnimatingIds] = useState(new Set())
 
   async function fetchScores() {
-    const { data } = await supabase
-      .from('submissions')
-      .select('team_id, points, teams(team_name)')
+    const [{ data: submissions }, { data: teams }] = await Promise.all([
+      supabase.from('submissions').select('team_id, points, teams(team_name)'),
+      supabase.from('teams').select('id, team_name'),
+    ])
 
-    if (!data) return
+    if (!teams) return
 
     const byTeam = {}
-    for (const row of data) {
+    for (const team of teams) {
+      byTeam[team.id] = {
+        team_id: team.id,
+        team_name: team.team_name,
+        total_points: 0,
+        item_count: 0,
+      }
+    }
+
+    for (const row of submissions ?? []) {
       const id = row.team_id
       if (!byTeam[id]) {
         byTeam[id] = {
@@ -67,7 +77,7 @@ export default function LeaderboardList({ currentTeamId, compact = false, showHe
     return () => supabase.removeChannel(channel)
   }, [])
 
-  if (loading || rows.length === 0) {
+  if (loading) {
     return null
   }
 
