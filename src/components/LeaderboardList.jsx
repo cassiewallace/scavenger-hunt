@@ -97,7 +97,8 @@ export default function LeaderboardList({ currentTeamId, compact = false, showHe
     <ol aria-label="Leaderboard" className="flex flex-col gap-2">
       {rows.map((team, idx) => {
         const isCurrentTeam = team.team_id === currentTeamId
-        const medalClass = medalColors[idx] ?? 'bg-white/10 text-white/80'
+        const rank = rows.findIndex(r => r.total_points === team.total_points) + 1
+        const medalClass = medalColors[rank - 1] ?? 'bg-white/10 text-white/80'
 
         return (
           <li
@@ -113,9 +114,9 @@ export default function LeaderboardList({ currentTeamId, compact = false, showHe
             {/* Rank badge */}
             <div
               className={`w-9 h-9 flex-shrink-0 rounded-full flex items-center justify-center font-bold text-sm ${medalClass}`}
-              aria-label={`Rank ${idx + 1}`}
+              aria-label={`Rank ${rank}`}
             >
-              {idx + 1}
+              {rank}
             </div>
 
             {/* Team info */}

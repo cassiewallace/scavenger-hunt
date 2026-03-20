@@ -94,7 +94,9 @@ export default function Leaderboard({ session }) {
           <div className="mt-16 text-center text-white/60 text-sm" aria-live="polite">Loading scores…</div>
         ) : (
           <ol className="mt-6 flex flex-col gap-2" aria-label="Leaderboard">
-            {rows.map((team, idx) => (
+            {rows.map((team, idx) => {
+              const rank = rows.findIndex(r => r.total_points === team.total_points) + 1
+              return (
               <li
                 key={team.team_id}
                 className={[
@@ -105,14 +107,14 @@ export default function Leaderboard({ session }) {
               >
                 <div
                   className={`w-9 h-9 flex-shrink-0 rounded-full flex items-center justify-center font-bold text-sm ${
-                    idx === 0 ? 'bg-yellow-400 text-black'
-                    : idx === 1 ? 'bg-gray-300 text-black'
-                    : idx === 2 ? 'bg-amber-600 text-white'
+                    rank === 1 ? 'bg-yellow-400 text-black'
+                    : rank === 2 ? 'bg-gray-300 text-black'
+                    : rank === 3 ? 'bg-amber-600 text-white'
                     : 'bg-white/10 text-white/80'
                   }`}
-                  aria-label={`Rank ${idx + 1}`}
+                  aria-label={`Rank ${rank}`}
                 >
-                  {idx + 1}
+                  {rank}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="font-semibold text-white truncate">
@@ -127,7 +129,8 @@ export default function Leaderboard({ session }) {
                   <span className="text-xs font-normal text-white/40 ml-0.5 inline-flex items-center gap-0.5">feathers <FeatherIcon className="w-3 h-3" /></span>
                 </div>
               </li>
-            ))}
+              )
+            })}
           </ol>
         )}
       </main>
